@@ -15,7 +15,7 @@ public class Player {
     public Player() {
     }
     
-        private String name;
+    private String name;
 
     /**
      * Get the value of name

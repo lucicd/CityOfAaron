@@ -6,6 +6,8 @@
  */
 package cityofaaron;
 
+import model.*;
+
 /**
  *
  * @author Drazen
@@ -16,7 +18,15 @@ public class CityOfAaron {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        Player player = new Player();
+        player.setName("Peter");
+        
+        Game game = new Game();
+        game.setPlayer(player);
+        
+        System.out.format("The player's name is %s.\n", player.getName());
+        System.out.format("Team member is %s %s.\n",
+                TeamMember.DRAZEN_LUCIC.getTitle(),
+                TeamMember.DRAZEN_LUCIC.getName());
     }
-    
 }
