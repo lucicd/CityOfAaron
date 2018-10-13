@@ -38,5 +38,14 @@ public class CityOfAaron {
         System.out.format("Location symbol is %s. %s\n",
                 locationFarm.getSymbol(),
                 locationFarm.getDescription());
+        
+        // Made by Gail Lee
+        ListItem wheat = new ListItem ();
+        wheat.setName("wheat");
+        wheat.setNumber(25);
+        
+        System.out.format("ListItem name is %s. ListItem number %d\n",
+                wheat.getName (),
+                wheat.getNumber ());
     }
 }
