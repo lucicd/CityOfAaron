@@ -47,5 +47,33 @@ public class CityOfAaron {
         System.out.format("ListItem name is %s. ListItem number %d\n",
                 wheat.getName (),
                 wheat.getNumber ());
+        
+        //Made by Drazen
+        
+        CropData cropData = new CropData();
+        cropData.setYear(2018);
+        cropData.setPopulation(100000);
+        cropData.setAcresOwned(5000);
+        cropData.setCropYield(20);
+        cropData.setWheatInStore(400);
+        cropData.setNumberWhoDied(0);
+        cropData.setNewPeople(50);
+        cropData.setHarvest(2500);
+        cropData.setPeopleFed(100000);
+        cropData.setAcresPlanted(4800);
+        cropData.setWheatForPeople(4000);
+        
+        System.out.format("The year is: %d.\n", cropData.getYear());
+        System.out.format("The population is %d.\n", cropData.getPopulation());
+        System.out.format("Acres owned is %d.\n", cropData.getAcresOwned());
+        System.out.format("Crop yield is %d.\n", cropData.getCropYield());
+        System.out.format("Wheat in store is %d.\n", cropData.getWheatInStore());
+        System.out.format("Number who died is %d.\n", cropData.getNumberWhoDied());
+        System.out.format("New people is %d.\n", cropData.getNewPeople());
+        System.out.format("Harvest is %d.\n", cropData.getHarvest());
+        System.out.format("People fed is %d.\n", cropData.getPeopleFed());
+        System.out.format("Acres planted is %d.\n", cropData.getAcresPlanted());
+        System.out.format("Wheat for people is %d.\n", cropData.getWheatForPeople());
+        
     }
 }
