@@ -20,6 +20,7 @@ public class CityOfAaron {
     public static void main(String[] args) {
         Player player = new Player();
         player.setName("Peter");
+    
         
         Game game = new Game();
         game.setPlayer(player);
@@ -28,5 +29,14 @@ public class CityOfAaron {
         System.out.format("Team member is %s %s.\n",
                 TeamMember.DRAZEN_LUCIC.getTitle(),
                 TeamMember.DRAZEN_LUCIC.getName());
+  
+        // Made by Carolyn
+        Location locationFarm = new Location ();
+        locationFarm.setDescription("This is an Animal Farm.");
+        locationFarm.setSymbol("Sheep");
+        
+        System.out.format("Location symbol is %s. %s\n",
+                locationFarm.getSymbol(),
+                locationFarm.getDescription());
     }
 }
