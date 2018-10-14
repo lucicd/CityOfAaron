@@ -32,8 +32,8 @@ public class CityOfAaron {
   
         // Made by Carolyn
         Location locationFarm = new Location ();
-        locationFarm.setDescription("This is an Animal Farm.");
-        locationFarm.setSymbol("Sheep");
+        locationFarm.setDescription("This is a wheat farm.");
+        locationFarm.setSymbol("Harvester");
         
         System.out.format("Location symbol is %s. %s\n",
                 locationFarm.getSymbol(),
