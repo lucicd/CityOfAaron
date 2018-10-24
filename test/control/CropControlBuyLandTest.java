@@ -1,7 +1,8 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * The CropControlBuyLandTest class file for the cityOfAaron project
+ * CIT-260
+ * Fall 2018
+ * Team members: Gail Lee, Carolyn Murray, Drazen Lucic
  */
 package control;
 
@@ -13,9 +14,9 @@ import static org.junit.Assert.*;
  *
  * @author Drazen
  */
-public class CropControlTest {
+public class CropControlBuyLandTest {
     
-    public CropControlTest() {
+    public CropControlBuyLandTest() {
     }
     
     /**

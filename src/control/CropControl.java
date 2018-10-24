@@ -8,6 +8,7 @@ package control;
 
 import model.CropData;
 import java.util.Random;
+import java.util.Set;
 
 /**
  *
@@ -32,6 +33,39 @@ public class CropControl {
         int landCost = random.nextInt(LAND_RANGE) + LAND_BASE;
         return landCost;
     }
+    /**
+     * 
+     * @param landPrice
+     * @param acresToSell
+     * @param cropData
+     * @return the number of acres owned after selling
+     * Preconditions: acresToSell must be positive
+     * and <= acresOwned
+     */
+    public static int sellLand(int landPrice, int acresToSell, CropData cropData) {
+        // if acresToSell < 0, return -1
+        if (acresToSell < 0) {
+            return -1;
+        }
+        
+        //if acresToSell > acresOwned, return -1
+        int acresOwned = cropData.getAcresOwned();
+        if (acresToSell > acresOwned) {
+            return -1;
+        }
+
+        //acresOwned = acresOwned - acresToSell
+        acresOwned -= acresToSell;
+        cropData.setAcresOwned(acresOwned);
+        
+        //wheatInStore = wheatInStore + acresToSell * landPrice
+        int wheatInStore = cropData.getWheatInStore();
+        wheatInStore += acresToSell * landPrice;
+        cropData.setWheatInStore(wheatInStore);
+
+        //return acresOwned
+        return acresOwned;
+    }
     
     /**
      * The buyLand() method
@@ -40,7 +74,7 @@ public class CropControl {
      * @param acresToBuy
      * @param cropData
      * @return the number of acres owned after buying
-     * Pre-conditions: acres to buy must be positive
+     * Preconditions: acres to buy must be positive
      * and the number of bushels of wheat owned must be
      * enough to buy the acres at a given price.
      */
