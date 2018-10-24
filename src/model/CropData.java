@@ -234,5 +234,26 @@ public class CropData {
     public void setWheatForPeople(int wheatForPeople) {
         this.wheatForPeople = wheatForPeople;
     }
+    
+        private int offering;
+
+    /**
+     * Get the value of offering
+     *
+     * @return the value of offering
+     */
+    public int getOffering() {
+        return offering;
+    }
+
+    /**
+     * Set the value of offering
+     *
+     * @param offering new value of offering
+     */
+    public void setOffering(int offering) {
+        this.offering = offering;
+    }
+
 
 }

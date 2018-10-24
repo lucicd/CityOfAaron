@@ -25,16 +25,15 @@ public class CropControl {
     /**
      * calcLandCost() method
      * Purpose: Calculate a random number between 17 and 27 bushels/acre
-     * @param none
      * @return the land cost
      */
-    
     public static int calcLandCost() {
         int landCost = random.nextInt(LAND_RANGE) + LAND_BASE;
         return landCost;
     }
     /**
-     * 
+     * The sellLand() method
+     * Purpose: to sell land
      * @param landPrice
      * @param acresToSell
      * @param cropData
@@ -106,4 +105,32 @@ public class CropControl {
         // return acresOwned
         return acresOwned;
     }
+    
+    /**
+     * The setOffering() method
+     * Purpose: To set a percentage of offering
+     * @param offeringPercentage, an integer between 0 and 100 inclusive
+     * @param cropData, a reference to a CropData object
+     * @return valid offering percentage
+     * Preconditions: percentage must be a value between 0 and 100 inclusive.
+     */
+    public static int setOffering(int offeringPercentage, CropData cropData) {
+        //If the offering percentage is negative this is an error. Return a -1.
+        if (offeringPercentage < 0) {
+            return -1;
+        }
+        
+        //If the offering percentage is greater than 100, this is an error. Return a -1.
+        if (offeringPercentage > 100) {
+            return -1;
+        }
+        
+        //Save the offering percentage into CropData object.
+        cropData.setOffering(offeringPercentage);
+        
+        //Return the offering percentage.
+
+        return offeringPercentage;
+    }
+
 }
