@@ -45,7 +45,7 @@ public class CropControlSellLandTest {
      */
     
     private void testCase(TestParams testParams) {
-        System.out.format("sellLand - Test Case %d\n", testParams.caseId);
+        System.out.format("sellLand - Test Case %d\n", TestParams.caseId);
         CropData cropData = new CropData();
         cropData.setAcresOwned(testParams.acresOwned);
         cropData.setWheatInStore(testParams.wheatInStore);
