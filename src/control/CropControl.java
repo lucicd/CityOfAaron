@@ -8,7 +8,6 @@ package control;
 
 import model.CropData;
 import java.util.Random;
-import java.util.Set;
 
 /**
  *
@@ -129,8 +128,6 @@ public class CropControl {
         cropData.setOffering(offeringPercentage);
         
         //Return the offering percentage.
-
         return offeringPercentage;
     }
-
 }
