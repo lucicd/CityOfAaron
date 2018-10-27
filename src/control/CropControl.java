@@ -130,4 +130,34 @@ public class CropControl {
         //Return the offering percentage.
         return offeringPercentage;
     }
+    /**
+* The feedPeople() method
+* Purpose: To allocate wheat for feeding the people
+* @param the number of bushels of wheat allocated to feed the people
+* @param a reference to a CropData object
+* @return the number bushels of wheat set aside to feed the people
+* Pre-conditions: the number of bushels of wheat allocated to feed
+* the people must be a positive number (can be zero as well)
+* and must not exceed available wheat in the store
+*/
+
+public static int feedPeople(int wheatToFeed, CropData cropData)
+{
+  
+// If the number of bushels to feed the people is negative, this is an error. Return a -1.
+    if (wheatToFeed < 0){
+        return -1;
+    }
+//	If the number of bushels to feed the people is greater than the wheat in store, this is an error. Return a -1.
+     if (wheatToFeed > cropData.getWheatInStore()){
+         return -1;
+     }
+//	Subtract the number of bushels to feed the people from the wheat in store and save the result into CropData object.
+     int newWheatInStore = cropData.getWheatInStore()- wheatToFeed;
+     cropData.setWheatInStore(newWheatInStore);
+//	Save the number of bushels to feed the people into CropData object
+     cropData.setWheatForPeople(wheatToFeed);
+//	Return the number of bushels to feed the people.
+     return wheatToFeed;
+}
 }
