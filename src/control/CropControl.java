@@ -17,9 +17,11 @@ public class CropControl {
 
     private static final int LAND_BASE = 17;
     private static final int LAND_RANGE = 11;
-    private static final int ACRES_PER_BUSHEL  = 2;
-    private static final int BUSHELS_PER_PERSON = 10;
-     
+    private static final int ACRES_PER_BUSHEL = 2;
+    private static final int ACRES_PER_PERSON = 10;
+    private static final int BUSHELS_PER_PERSON = 20;
+    private static final int MAX_POPULATION_GROWTH_PERCENTAGE = 5;
+
     // random number generator
     private static Random random = new Random();
 
@@ -32,6 +34,17 @@ public class CropControl {
     public static int calcLandCost() {
         int landCost = random.nextInt(LAND_RANGE) + LAND_BASE;
         return landCost;
+    }
+    
+    /**
+     * calcLandCost() method Purpose: Calculate a random number between 17 and
+     * 27 bushels/acre
+     *
+     * @return the land cost
+     */
+    public static int calcPopulationGrowthPercentage() {
+        int growthPercentage = random.nextInt(MAX_POPULATION_GROWTH_PERCENTAGE + 1);
+        return growthPercentage;
     }
 
     /**
@@ -142,23 +155,23 @@ public class CropControl {
      * people must be a positive number (can be zero as well) and must not
      * exceed available wheat in the store
      */
-
     public static int feedPeople(int wheatToFeed, CropData cropData) {
 
-// If the number of bushels to feed the people is negative, this is an error. Return a -1.
+        // If the number of bushels to feed the people is negative, this is an error. Return a -1.
         if (wheatToFeed < 0) {
             return -1;
         }
-//	If the number of bushels to feed the people is greater than the wheat in store, this is an error. Return a -1.
+        // If the number of bushels to feed the people is greater than the wheat in store, this is an error. Return a -1.
         if (wheatToFeed > cropData.getWheatInStore()) {
             return -1;
         }
-//	Subtract the number of bushels to feed the people from the wheat in store and save the result into CropData object.
+        // Subtract the number of bushels to feed the people from the wheat in store and save the result into CropData object.
         int newWheatInStore = cropData.getWheatInStore() - wheatToFeed;
         cropData.setWheatInStore(newWheatInStore);
-//	Save the number of bushels to feed the people into CropData object
+        
+        // Save the number of bushels to feed the people into CropData object
         cropData.setWheatForPeople(wheatToFeed);
-//	Return the number of bushels to feed the people.
+        // Return the number of bushels to feed the people.
         return wheatToFeed;
     }
 
@@ -173,44 +186,69 @@ public class CropControl {
      * Acres to plant must be less than or equal to acres owned City population
      * must be greater than or equal to number of acres to plant / 10
      */
-    public static int plantCrops(int acresToPlant, CropData cropData) { 
-            
-    //if acresToPlant <0, return -1
-  
-        if(acresToPlant<0){
+    public static int plantCrops(int acresToPlant, CropData cropData) {
+
+        //if acresToPlant <0, return -1
+        if (acresToPlant < 0) {
             return -1;
         }
-    //requiredushels=acresToPlant/2
-    int requiredBushels = acresToPlant / ACRES_PER_BUSHEL;
-    if (acresToPlant % ACRES_PER_BUSHEL > 0) requiredBushels++;
-    
-    //requiredBushels > wheatInStore, return -1
-    int wheatInStore = cropData.getWheatInStore();
-    if (requiredBushels > wheatInStore) {
-        return -1;
-    }
-    
-    //acresToPlant > acresOwned, return -1 
-    int acresOwned = cropData.getAcresOwned();
-    if (acresToPlant > acresOwned) {
-        return -1;
-    }
+        //requiredushels=acresToPlant/2
+        int requiredBushels = acresToPlant / ACRES_PER_BUSHEL;
+        if (acresToPlant % ACRES_PER_BUSHEL > 0) {
+            requiredBushels++;
+        }
 
-    //If RequiredPopultation>population
-    int requiredPopulation = acresToPlant / BUSHELS_PER_PERSON; 
-    if (acresToPlant % BUSHELS_PER_PERSON > 0) requiredPopulation++;
-    int population = cropData.getPopulation();
-    if (requiredPopulation > population){
-        return -1;
-    }
+        //requiredBushels > wheatInStore, return -1
+        int wheatInStore = cropData.getWheatInStore();
+        if (requiredBushels > wheatInStore) {
+            return -1;
+        }
 
-    //requiedBushels - wheatInStore;
-    wheatInStore -= requiredBushels;
-        
-    cropData.setWheatInStore(wheatInStore);
-    cropData.setAcresPlanted(acresToPlant);
-    //return acresPlanted 
-    return acresToPlant;
+        //acresToPlant > acresOwned, return -1 
+        int acresOwned = cropData.getAcresOwned();
+        if (acresToPlant > acresOwned) {
+            return -1;
+        }
+
+        //If RequiredPopultation>population
+        int requiredPopulation = acresToPlant / ACRES_PER_PERSON;
+        if (acresToPlant % ACRES_PER_PERSON > 0) {
+            requiredPopulation++;
+        }
+        int population = cropData.getPopulation();
+        if (requiredPopulation > population) {
+            return -1;
+        }
+
+        //requiedBushels - wheatInStore;
+        wheatInStore -= requiredBushels;
+
+        cropData.setWheatInStore(wheatInStore);
+        cropData.setAcresPlanted(acresToPlant);
+        //return acresPlanted 
+        return acresToPlant;
+    }
+    
+    public static int growPopulation(int growthPercentage, CropData cropData) {
+        int population = cropData.getPopulation();
+        int newPeople = population * growthPercentage / 100;
+        cropData.setNewPeople(newPeople);
+        population += newPeople;
+        cropData.setPopulation(population);
+        return newPeople;
+    }
+    
+    public static int calcStarved(CropData cropData) {
+        int population = cropData.getPopulation();
+        int wheatForPeople = cropData.getWheatForPeople();
+        int adequatlyFed = wheatForPeople / BUSHELS_PER_PERSON;
+        int starved = 0;
+        if (adequatlyFed < population) {
+            starved = population - adequatlyFed;
+            cropData.setNumberWhoDied(starved);
+            population -= starved;
+            cropData.setPopulation(population);
+        }
+        return starved;
     }
 }
-
