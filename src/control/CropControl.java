@@ -251,4 +251,26 @@ public class CropControl {
         }
         return starved;
     }
+    
+    public static int calcEatenByRats (int eatenByRats, CropData cropData){
+        int wheatInStore = cropData.getWheatInStore();
+        int eaten = eatenByRats * wheatInStore/100;
+        wheatInStore -= eaten;
+        cropData.setWheatInStore(wheatInStore);
+        cropData.setEatenByRats(eaten);
+        return eaten;
+   }
+
+
+    public static int storeWheat (int wheat, CropData cropData){
+        if (wheat<0){
+            return -1;
+        }
+        int wheatInStore=cropData.getWheatInStore();
+        wheatInStore+=wheat;
+        cropData.setWheatInStore(wheatInStore);
+          
+        return wheatInStore;
+    }
 }
+        

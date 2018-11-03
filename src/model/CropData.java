@@ -66,6 +66,26 @@ public class CropData {
         return acresOwned;
     }
 
+    private int eatenByRats;
+
+    /**
+     * Get the value of eatenByRats
+     *
+     * @return the value of eatenByRats
+     */
+    public int getEatenByRats() {
+        return eatenByRats;
+    }
+
+    /**
+     * Set the value of eatenByRats
+     *
+     * @param eatenByRats new value of eatenByRats
+     */
+    public void setEatenByRats(int eatenByRats) {
+        this.eatenByRats = eatenByRats;
+    }
+
     /**
      * Set the value of acresOwned
      *
