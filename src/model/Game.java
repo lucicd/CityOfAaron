@@ -15,6 +15,25 @@ public class Game {
     public Game() {
     }
 
+    private CropData cropData;
+
+    /**
+     * Get the value of cropData
+     *
+     * @return the value of cropData
+     */
+    public CropData getCropData() {
+        return cropData;
+    }
+
+    /**
+     * Set the value of cropData
+     *
+     * @param cropData new value of cropData
+     */
+    public void setCropData(CropData cropData) {
+        this.cropData = cropData;
+    }
     private Player thePlayer;
 
     /**

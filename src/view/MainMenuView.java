@@ -6,6 +6,8 @@
 package view;
 
 import java.util.Scanner;
+import cityofaaron.CityOfAaron;
+import control.GameControl;
 
 /**
  *
@@ -85,7 +87,20 @@ public MainMenuView()
     //Returns:none
     //===========================================
     public void startNewGame(){
-        System.out.println("\nStart new game option selected.");
+    // Display the Banner Page.
+    System.out.println("\nWelcome to the city of Aaron.");
+    
+    // Prompt for and get the user's name.
+    String name;
+    System.out.println("\nPlease type in your first name:");
+    name = keyboard.next();
+    
+    // Call the createNewGame() method in the GameControl class
+    GameControl.createNewGame(name);
+    
+    // Display a welcome message
+    System.out.println("Welcome " + name + " have fun!!!!");
+    // Display the Game menu
     }
     //The startSavedGame()
     //Purposed:loads and starts the saved game

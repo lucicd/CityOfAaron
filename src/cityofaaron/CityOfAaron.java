@@ -6,6 +6,7 @@
  */
 package cityofaaron;
 
+import model.Game;
 import view.*;
 
 /**
@@ -13,7 +14,17 @@ import view.*;
  * @author Drazen
  */
 public class CityOfAaron {
+    // variable for keeping a reference to the Game object
+    private static Game theGame = null;
 
+    public static Game getGame() {
+        return theGame;
+    }
+
+    public static void setGame(Game theGame) {
+        CityOfAaron.theGame = theGame;
+    }
+    
     /**
      * @param args the command line arguments
      */
