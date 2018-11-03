@@ -88,7 +88,20 @@ public MainMenuView()
     //===========================================
     public void startNewGame(){
     // Display the Banner Page.
-    System.out.println("\nWelcome to the city of Aaron.");
+    System.out.println(
+            "Welcome to the city of Aaron! You have been elected by the people\n" +
+            "to assume a role as the ruler of our budding city. We have full\n" + 
+            "confidence in your abilities and wisdom to manage available resources.\n"+
+            "Buy and sell land, determine how much wheat to plant each year and\n"+
+            "how much to set aside to feed your people. If you fail to provide\n"+
+            "enough wheat for the people, people will starve, some people will die,\n"+
+            "and your workforce will be diminished. Beware of rats! Those pesky\n"+
+            "creatures developed some taste for our wheat and last year devoured\n"+
+            "10% of our crops. Unfortunately, if too many people die, you will be\n"+
+            "removed from the office. However, if you are successful, more\n"+
+            "inhabitants will join us, and the city of Aaron will flourish.\n"+
+            "Good luck!"
+    );
     
     // Prompt for and get the user's name.
     String name;

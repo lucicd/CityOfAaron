@@ -17,10 +17,12 @@ public class CityOfAaron {
     // variable for keeping a reference to the Game object
     private static Game theGame = null;
 
+    // getter for theGame reference
     public static Game getGame() {
         return theGame;
     }
 
+    // setter for theGame reference
     public static void setGame(Game theGame) {
         CityOfAaron.theGame = theGame;
     }
