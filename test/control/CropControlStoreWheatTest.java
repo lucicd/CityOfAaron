@@ -5,12 +5,15 @@
  */
 package control;
 
+import org.junit.Test;
+
 /**
  *
  * @author GailRVC
  */
 public class CropControlStoreWheatTest {
-//  public void testStoreWheatCase1() {  
+    @Test
+    public void testStoreWheatCase1() {  
 //   System.out.println("storeWheat - Test Case 1");
 //        CropData cropData = new CropData();
 //        Int storeWheat
@@ -24,3 +27,4 @@ public class CropControlStoreWheatTest {
 //        assertEquals(expResult + population, cropData.getPopulation());
 //        assertEquals(expResult, cropData.getNewPeople());
     }
+}

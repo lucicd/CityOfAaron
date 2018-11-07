@@ -103,7 +103,7 @@ public class GameMenuView {
     }
 
     private void viewList() {
-        System.out.println("\nDisplay View/Print a list option selected.");
+        CropView.displayCropsReportView();
     }
 
     private void moveToNewLocation() {
@@ -111,7 +111,6 @@ public class GameMenuView {
     }
 
     private void manageCrops() {
-    CropView.runCropView();
-            
+        CropView.runCropView();
     }
 }

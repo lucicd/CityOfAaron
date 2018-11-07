@@ -34,6 +34,7 @@ public class CropControlBuyLandTest {
         int expResult = 2810;
         int result = CropControl.buyLand(landPrice, acresToBuy, cropData);
         assertEquals(expResult, result);
+        assertEquals(expResult, cropData.getAcresOwned());
     }
     
     @Test
