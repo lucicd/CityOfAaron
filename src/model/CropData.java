@@ -274,6 +274,5 @@ public class CropData {
     public void setOffering(int offering) {
         this.offering = offering;
     }
-
-
+ 
 }
