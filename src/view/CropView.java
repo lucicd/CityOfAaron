@@ -45,6 +45,26 @@ public class CropView {
         //output how much land we own now
         System.out.format("You now own %d acres of land.", cropData.getAcresOwned());
     }
+    // The feedPeopleView method
+    // Purpose: interface with the user input for feeding people
+    // Parameters: none
+    // Returns: none
+    public static void feedPeopleView()
+    {
+        // Prompt the user to enter the number of bushels set aside to feed the people
+        System.out.print("\nHow many bushels do you want to set aside to feed the people?");
+        
+        // Get the user’s input and save it.
+        int wheatToFeed;
+        wheatToFeed = keyboard.nextInt();
+        
+        // Call the feedPeople( ) method in the control layer to feed the people
+        CropControl.feedPeople(wheatToFeed, cropData);
+        
+        //output The number of bushels that are left in store
+        System.out.format("You now have %d bushels in store.", cropData.getWheatInStore());
+        
+    }
     
     // The runCropView method()
     // Purpose: runs the methods to manage the crops game
