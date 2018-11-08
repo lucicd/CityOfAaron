@@ -103,7 +103,8 @@ public class GameMenuView {
     }
 
     private void viewList() {
-        CropView.displayCropsReportView();
+        ListMenuView lmv = new ListMenuView();
+        lmv.displayMenuView();
     }
 
     private void moveToNewLocation() {
