@@ -131,7 +131,8 @@ public MainMenuView()
     //Returns:none
     //===============================================
     public void displayHelpMenuView(){
-        System.out.println("\nDisplay help menu view option selected.");
+        HelpMenuView mmv = new HelpMenuView();
+        mmv.displayMenuView();
     }
     // The displaySaveGameView()
     //Purposed: display save game view
