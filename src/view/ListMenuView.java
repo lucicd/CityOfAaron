@@ -12,11 +12,11 @@ import java.util.Scanner;
  * @author Gail Lee
  */
 public class ListMenuView {
-   Scanner keyboard=new Scanner(System.in);
+    Scanner keyboard=new Scanner(System.in);
     private final String theMenu;
     private final int max;
     
-    // The GameMenuView constructor
+    // The ListMenuView constructor
     // Purpose: Initialize the menu data
     // Parameters: none
     // Returns: none
