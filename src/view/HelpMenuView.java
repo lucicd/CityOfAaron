@@ -1,7 +1,7 @@
 // The HelpMenuView class - part of the view layer
 // Object of this class manages the Help menu
 // Author: Drazen Lucic, Carolyn Murray, Gail Lee
-// Date last modified: November 6, 2018
+// Date last modified: November 13, 2018
 //-------------------------------------------------------
 package view;
 
