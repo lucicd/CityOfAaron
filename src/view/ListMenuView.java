@@ -25,7 +25,7 @@ public class ListMenuView extends MenuView{
            " 1 - List or view the animals in the storehouse\n" +
            " 2 - List or view the tools in the storehouse\n" +
            " 3 - List or view the provisions in the storehouse\n" +
-           " 4 - List or view the provisions in the storehouse\n" +
+           " 4 - List or view the people in the development team\n" +
            " 5 - Return to the Game menu\n",
         5);
      
@@ -47,7 +47,7 @@ public class ListMenuView extends MenuView{
             case 3://List or view the provisions in the storehouse
                 listProvisions();
                 break;
-            case 4://Manage the CropsList or view the developers of this game
+            case 4://List or view the developers of this game
                 listTeam();
                 break;
             case 5://Return to the Game menu

@@ -5,7 +5,6 @@
 //-------------------------------------------------------
 package view;
 
-import java.util.Scanner;
 import control.GameControl;
 
 /**
