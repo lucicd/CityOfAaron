@@ -80,6 +80,8 @@ public class GameMenuView extends MenuView {
         System.out.println("*******************************");
         System.out.println("*   CITY OF AARON: GAME MAP   *");
         System.out.println("*******************************");
+        System.out.println(Map.getLegend());
+        System.out.println();
         
         Game game = CityOfAaron.getGame();
         Map map = game.getMap();

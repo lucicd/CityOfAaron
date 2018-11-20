@@ -62,4 +62,17 @@ public class Map {
         locations[row][col] = _location;
     } 
 
+    public static String getLegend() {
+        return "\n&& - The Ruler’s Court" +
+               "\n[] - The City’s granary and storehouse" + 
+               "\n## - The City of Aaron streets" + 
+               "\n&& - The village"+
+               "\n-- - The pastures"+
+               "\n^* - Snow-covered mountains"+
+               "\n00 - Undeveloped land"+
+               "\n!! - Farmland"+
+               "\n.. - Desert"+
+               "\nxx - The border of the Lamanites land"+
+               "\n~~ - The river";
+    }
 }
