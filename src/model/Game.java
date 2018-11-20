@@ -16,6 +16,26 @@ public class Game {
     }
 
     private CropData cropData;
+    private Map map;
+
+    /**
+     * Get the value of map
+     *
+     * @return the value of map
+     */
+    public Map getMap() {
+        return map;
+    }
+
+    /**
+     * Set the value of map
+     *
+     * @param map new value of map
+     */
+    public void setMap(Map map) {
+        this.map = map;
+    }
+
 
     /**
      * Get the value of cropData

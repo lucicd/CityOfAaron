@@ -5,6 +5,11 @@
 //-------------------------------------------------------
 package view;
 
+import cityofaaron.CityOfAaron;
+import model.Game;
+import model.Location;
+import model.Map;
+
 /**
  *
  * @author Drazen
@@ -54,9 +59,50 @@ public class GameMenuView extends MenuView {
         }
     }
     
-    private void viewMap() {
-        System.out.println("\nView the map option selected.");
+    // The printRowSeparator method
+    // Purpose: Prints the separator between map rows
+    // Parameters: none
+    // Returns: none
+    // ===================================
+    private static void printRowSeparator(int maxCols) {
+        for (int col = 0; col < maxCols; col++) {
+            System.out.print("+-----");
+        }
+        System.out.println("+");
     }
+
+    // The viewMap method
+    // Purpose: Prints the map as 2D matrix
+    // Parameters: none
+    // Returns: none
+    // ===================================
+    private static void viewMap() {
+        System.out.println("*******************************");
+        System.out.println("*   CITY OF AARON: GAME MAP   *");
+        System.out.println("*******************************");
+        
+        Game game = CityOfAaron.getGame();
+        Map map = game.getMap();
+        int maxRows = map.getRowCount();
+        int maxCols = map.getColCount();
+        for (int row = 0; row < maxRows; row++) {
+            printRowSeparator(maxCols);
+            for (int col = 0; col < maxCols; col++) {
+                Location loc = map.getLocation(row, col);
+                System.out.print("+ ");
+                System.out.print(loc.getSymbol());
+                System.out.print("  ");
+            }
+            System.out.println("+");
+        }
+        printRowSeparator(maxCols);
+    }
+    
+    // The viewList() method
+    // Purpose: Creates a ListMenuView object and calls its
+    //    displayMenu( ) method       
+    // Parameters: none
+    // Returns: none
 
     private void viewList() {
         ListMenuView lmv = new ListMenuView();
