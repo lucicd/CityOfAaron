@@ -7,6 +7,7 @@
 package control;
 import model.*;
 import cityofaaron.CityOfAaron;
+import java.util.ArrayList;
 
 /**
  *
@@ -37,6 +38,9 @@ public class GameControl {
         
         //Create Map object
         createMap();
+        
+        //Create the list of animals
+        createAnimalsList();
     }
     
     // createCropDataObject method
@@ -146,5 +150,20 @@ public class GameControl {
         
         game.setMap(theMap);
     }
-
+    
+    //createAnimalsList method
+    //Purpose: creates list of animals in the storehouse
+    //         and stores it into the game object
+    //Params: none
+    //Returns: none
+    public static void createAnimalsList() {
+        ArrayList<ListItem> animals = new ArrayList<>();
+        
+        animals.add(new ListItem("Sheep", 100));
+        animals.add(new ListItem("Cow", 120));
+        animals.add(new ListItem("Horse", 350));
+        animals.add(new ListItem("Goat", 50));
+        
+        game.setAnimals(animals);
+    }
 }

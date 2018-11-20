@@ -5,6 +5,11 @@
 //-------------------------------------------------------
 package view;
 
+import cityofaaron.CityOfAaron;
+import java.util.ArrayList;
+import model.Game;
+import model.ListItem;
+
 /**
  *
  * @author Gail Lee
@@ -55,11 +60,30 @@ public class ListMenuView extends MenuView{
         }
     }
     
-    //Drazen
+    //The listAnimals method
+    //Purpose: lists the animals in the sorehouse
+    //Parameters: none
+    //Returns: none
+    //================================================
     private void listAnimals() {
-        System.out.println("listAnimals options selected");
+        //get the game object
+        Game game = CityOfAaron.getGame();
+        
+        //use the game object to get the list of animals in the storehouse
+        ArrayList<ListItem> animals = game.getAnimals();
+        
+        //show report title
+        System.out.println("\nAnimals in the City of Aaron");
+               
+        for (ListItem animal: animals) {
+            String name = animal.getName();
+            int number = animal.getNumber();
+            System.out.format("%s\t\t%d\n", name, number);
+        }
     }
-
+    
+    
+    
     //Carolyn
     private void listTools() {
         System.out.println("listTools options selected");

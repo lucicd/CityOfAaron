@@ -6,6 +6,8 @@
  */
 package model;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author tweet
@@ -17,6 +19,26 @@ public class Game {
 
     private CropData cropData;
     private Map map;
+    private ArrayList<ListItem> animals;
+
+    /**
+     * Get the value of animals
+     *
+     * @return the value of animals
+     */
+    public ArrayList<ListItem> getAnimals() {
+        return animals;
+    }
+
+    /**
+     * Set the value of animals
+     *
+     * @param animals new value of animals
+     */
+    public void setAnimals(ArrayList<ListItem> animals) {
+        this.animals = animals;
+    }
+
 
     /**
      * Get the value of map
