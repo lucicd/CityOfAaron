@@ -14,7 +14,7 @@ import java.util.ArrayList;
  */
 public class Game {
 
-    private ArrayList<ListItem> tools;
+    
 
     public Game() {
     }
@@ -22,6 +22,26 @@ public class Game {
     private CropData cropData;
     private Map map;
     private ArrayList<ListItem> animals;
+    private ArrayList<ListItem> provisions;
+    private ArrayList<ListItem> tools;
+
+    /**
+     * Get the value of provisions
+     *
+     * @return the value of provisions
+     */
+    public ArrayList<ListItem> getProvisions() {
+        return provisions;
+    }
+
+    /**
+     * Set the value of provisions
+     *
+     * @param provisions new value of provisions
+     */
+    public void setProvisions(ArrayList<ListItem> provisions) {
+        this.provisions = provisions;
+    }
        
     /**
      * Get the value of animals

@@ -44,6 +44,9 @@ public class GameControl {
         
         //Create the list of tools
         createToolsList();
+        
+        //Create the list of provisions
+        createProvisionsList();
     }
     
     // createCropDataObject method
@@ -213,7 +216,8 @@ public class GameControl {
         
         game.setAnimals(animals);
     }
-//createToolsList method
+    
+    //createToolsList method
     //Purpose: creates list of tools in the storehouse
     //         and stores it into the game object
     //Params: none
@@ -227,6 +231,22 @@ public class GameControl {
         tools.add(new ListItem("Plow", 50));
         
         game.setTools(tools);
+    }
+    
+    //createProvisionsList method
+    //Purpose: creates list of provisions in the storehouse
+    //         and stores it into the game object
+    //Params: none
+    //Returns: none
+    public static void createProvisionsList() {
+        ArrayList<ListItem> provisions = new ArrayList<>();
+        
+        provisions.add(new ListItem("Sugar", 350));
+        provisions.add(new ListItem("Salt", 50));
+        provisions.add(new ListItem("Flour", 550));
+        provisions.add(new ListItem("Rice", 100));
+        
+        game.setProvisions(provisions);
     }
 }
 

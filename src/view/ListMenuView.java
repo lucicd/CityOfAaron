@@ -105,9 +105,27 @@ public class ListMenuView extends MenuView{
         }
     }
 
-    //Gail
+    //Gail Lee
+    //The listProvisions method
+    //Purpose: lists the provisions in the storehouse
+    //Parameters: none
+    //Returns: none
+    //================================================
     private void listProvisions() {
-        System.out.println("listProvisions options selected");
+        //get the game object
+        Game game = CityOfAaron.getGame();
+        
+        //use the game object to get the list of provisions in the storehouse
+        ArrayList<ListItem> provisions = game.getProvisions();
+        
+        //show report title
+        System.out.println("\nProvisions in the City of Aaron");
+               
+        for (ListItem provision: provisions) {
+            String name = provision.getName();
+            int number = provision.getNumber();
+            System.out.format("%s\t\t%d\n", name, number);
+        }
     }
 
     private void listTeam() {
