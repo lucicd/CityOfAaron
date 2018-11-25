@@ -97,45 +97,62 @@ public class GameControl {
             theMap.setLocation(i, 4, loc);
         }
         
-        // define the string for a farm land location
+        // set an undeveloped land location
+        String undeveloped = "\nYou are on the undeveloped land." +
+                             "\nPerhaps the land price is good." + 
+                             "\nConsider buying some land and planting crops.";
+        loc = new Location();
+        loc.setDescription(undeveloped);
+        loc.setSymbol("00");
+        theMap.setLocation(0, 2, loc);
+        theMap.setLocation(0, 3, loc);
+        
+        // set a farmland location with a hint
         String farmland = "\nYou are on the fertile banks of the River." +
                           "\nIn the springthis low farmland floods and is covered with rich" +
                           "\nnew soil. Wheat is planted as far as you can see."; 
-
-        // set a farmland location with a hint
         loc = new Location();
-        loc.setDescription(farmland + "\nOne bushel will plant two acres of wheat.");
+        loc.setDescription(farmland + "\nOne bushel will plant two acres of wheat." + 
+                                      "\nOne farmer can take care of 10 acres of land.");
         loc.setSymbol("!!");
-        for (int i = 0; i < MAX_ROW; i++) {
-            theMap.setLocation(i, 2, loc);
-            theMap.setLocation(i, 3, loc);
-        }
+        theMap.setLocation(1, 2, loc);
+        theMap.setLocation(1, 3, loc);
+        theMap.setLocation(2, 2, loc);
+        theMap.setLocation(2, 3, loc);
         
-        // define the string for mountain location
-        String mountains = "\nYou are on the snow-covered mountains." +
-                           "\nThere is plenty of wood, but beware of grizzly bears." +
-                           "\nSearch carefully and you might find some ore for your tools.";
-
-        // set a mountains location
+        //Ruler's Court location
+        String rulersCourt = "\nYou are the Ruler's Court." +
+                             "\nThe citizens have full confidence in your leadership skills." +
+                             "\nBuy/sell land, plant/harvest crops. Keep us safe from pests.";
         loc = new Location();
-        loc.setDescription(mountains);
-        loc.setSymbol("^*");
-        theMap.setLocation(MAX_ROW - 1, 0, loc);
-        theMap.setLocation(MAX_ROW - 1, 1, loc);
-
-        // define the string for city location
-        String city = "\nYou are the City of Aaron." +
-                      "\nThe citizens have full confidence in your leadership skills." +
-                      "\nBuy/sell land, plant/harvest crops. Keep us safe from pests.";
-
-        // set a city location
-        loc = new Location();
-        loc.setDescription(city + "\nOne citizen can plant 10 acres of land.");
-        loc.setSymbol("##");
+        loc.setDescription(rulersCourt);
+        loc.setSymbol("&&");
         theMap.setLocation(0, 0, loc);
+        
+        //The City’s Granary and Storehouse location
+        String storeHouse = "\nYou are the City's Granary and Storehouse.";
+        loc = new Location();
+        loc.setDescription(storeHouse);
+        loc.setSymbol("[]");
         theMap.setLocation(0, 1, loc);
+        
+        //The city location
+        String city = "\nYou are the City of Aaron streets." + 
+                      "\nPeople are cheering for you.";
+        loc = new Location();
+        loc.setDescription(city);
+        loc.setSymbol("##");
         theMap.setLocation(1, 0, loc);
         theMap.setLocation(1, 1, loc);
+        
+        //The village location with a hint
+        String village = "\nYou are the village on the outskirts of the City of Aaron." + 
+                         "\nIt is the home of hard-working farmers.";
+        loc = new Location();
+        loc.setDescription(village + "\nOne farmer can take care of 10 acres of land.");
+        loc.setSymbol("@@");
+        theMap.setLocation(2, 0, loc);
+        theMap.setLocation(2, 1, loc);
         
         // define the string for mountain location
         String pastures = "\nYou are on the pastures area, green grass as far as the eye can see." +
@@ -146,10 +163,37 @@ public class GameControl {
         loc = new Location();
         loc.setDescription(pastures);
         loc.setSymbol("--");
-        theMap.setLocation(2, 0, loc);
-        theMap.setLocation(2, 1, loc);
         theMap.setLocation(3, 0, loc);
         theMap.setLocation(3, 1, loc);
+        
+        // set a mountains location
+        String mountains = "\nYou are on the snow-covered mountains." +
+                           "\nThere is plenty of wood, but beware of grizzly bears." +
+                           "\nSearch carefully and you might find some ore for your tools.";
+        loc = new Location();
+        loc.setDescription(mountains);
+        loc.setSymbol("^*");
+        theMap.setLocation(4, 0, loc);
+        theMap.setLocation(4, 1, loc);
+        
+        // set a desert location
+        String desert = "\nYou are the desert." +
+                        "\nLots of sand and not much else." +
+                        "\nHowever, it is a buffer zone between you an the Lamanites.";
+        loc = new Location();
+        loc.setDescription(desert);
+        loc.setSymbol("..");
+        theMap.setLocation(3, 2, loc);
+        theMap.setLocation(3, 3, loc);
+        
+        // set the border of the Lamaintes land
+        String lamanitesLand = "\nYou are at the border of the Lamaintes land." +
+                               "\nBeware of Lamanites. They seem to be on the war path nowadays.";
+        loc = new Location();
+        loc.setDescription(lamanitesLand);
+        loc.setSymbol("xx");
+        theMap.setLocation(4, 2, loc);
+        theMap.setLocation(4, 3, loc);
         
         game.setMap(theMap);
     }
