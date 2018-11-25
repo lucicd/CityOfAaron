@@ -14,13 +14,15 @@ import java.util.ArrayList;
  */
 public class Game {
 
+    private ArrayList<ListItem> tools;
+
     public Game() {
     }
 
     private CropData cropData;
     private Map map;
     private ArrayList<ListItem> animals;
-
+       
     /**
      * Get the value of animals
      *
@@ -37,6 +39,24 @@ public class Game {
      */
     public void setAnimals(ArrayList<ListItem> animals) {
         this.animals = animals;
+    }
+
+    /**
+     * Get the value of tools
+     *
+     * @return the value of tools
+     */
+    public ArrayList<ListItem> getTools() {
+        return tools;
+    }
+
+    /**
+     * Set the value of tools
+     *
+     * @param tools new value of tools
+     */
+    public void setTools(ArrayList<ListItem> tools) {
+        this.tools = tools;
     }
 
 

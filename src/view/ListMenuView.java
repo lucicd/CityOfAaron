@@ -81,12 +81,28 @@ public class ListMenuView extends MenuView{
             System.out.format("%s\t\t%d\n", name, number);
         }
     }
-    
-    
-    
+   
     //Carolyn
+    //The listTools method
+    //Purpose: lists the tools in the storehouse
+    //Parameters: none
+    //Returns: none
+    //================================================
     private void listTools() {
-        System.out.println("listTools options selected");
+        //get the game object
+        Game game = CityOfAaron.getGame();
+        
+        //use the game object to get the list of tools in the storehouse
+        ArrayList<ListItem> tools = game.getTools();
+        
+        //show report title
+        System.out.println("\nTools in the City of Aaron");
+               
+        for (ListItem tool: tools) {
+            String name = tool.getName();
+            int number = tool.getNumber();
+            System.out.format("%s\t\t%d\n", name, number);
+        }
     }
 
     //Gail

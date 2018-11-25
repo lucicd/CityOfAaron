@@ -41,6 +41,9 @@ public class GameControl {
         
         //Create the list of animals
         createAnimalsList();
+        
+        //Create the list of tools
+        createToolsList();
     }
     
     // createCropDataObject method
@@ -166,4 +169,22 @@ public class GameControl {
         
         game.setAnimals(animals);
     }
+//createToolsList method
+    //Purpose: creates list of tools in the storehouse
+    //         and stores it into the game object
+    //Params: none
+    //Returns: none
+    public static void createToolsList() {
+        ArrayList<ListItem> tools = new ArrayList<>();
+        
+        tools.add(new ListItem("Axe", 10));
+        tools.add(new ListItem("Shovel", 50));
+        tools.add(new ListItem("Sickel", 150));
+        tools.add(new ListItem("Plow", 50));
+        
+        game.setTools(tools);
+    }
 }
+
+
+
