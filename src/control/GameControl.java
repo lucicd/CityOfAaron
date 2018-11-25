@@ -8,6 +8,7 @@ package control;
 import model.*;
 import cityofaaron.CityOfAaron;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  *
@@ -47,6 +48,9 @@ public class GameControl {
         
         //Create the list of provisions
         createProvisionsList();
+        
+        //Create the list of team members
+        createTeamMembersList();
     }
     
     // createCropDataObject method
@@ -206,6 +210,7 @@ public class GameControl {
     //         and stores it into the game object
     //Params: none
     //Returns: none
+    //Made by Drazen
     public static void createAnimalsList() {
         ArrayList<ListItem> animals = new ArrayList<>();
         
@@ -222,6 +227,7 @@ public class GameControl {
     //         and stores it into the game object
     //Params: none
     //Returns: none
+    //Made by Carolyn
     public static void createToolsList() {
         ArrayList<ListItem> tools = new ArrayList<>();
         
@@ -238,6 +244,7 @@ public class GameControl {
     //         and stores it into the game object
     //Params: none
     //Returns: none
+    //Made by Gail
     public static void createProvisionsList() {
         ArrayList<ListItem> provisions = new ArrayList<>();
         
@@ -247,6 +254,18 @@ public class GameControl {
         provisions.add(new ListItem("Rice", 100));
         
         game.setProvisions(provisions);
+    }
+    
+    //createTeamMembersList method
+    //Purpose: creates list of team members
+    //         and stores it into the game object
+    //Params: none
+    //Returns: none
+    //Made by Drazen
+    public static void createTeamMembersList() {
+        ArrayList<TeamMember> teamMembers = 
+                new ArrayList<TeamMember>(Arrays.asList(TeamMember.values()));
+        game.setTeamMembers(teamMembers);
     }
 }
 

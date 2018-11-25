@@ -24,6 +24,26 @@ public class Game {
     private ArrayList<ListItem> animals;
     private ArrayList<ListItem> provisions;
     private ArrayList<ListItem> tools;
+    private ArrayList<TeamMember> teamMembers;
+
+    /**
+     * Get the value of teamMembers
+     *
+     * @return the value of teamMembers
+     */
+    public ArrayList<TeamMember> getTeamMembers() {
+        return teamMembers;
+    }
+
+    /**
+     * Set the value of teamMembers
+     *
+     * @param teamMembers new value of teamMembers
+     */
+    public void setTeamMembers(ArrayList<TeamMember> teamMembers) {
+        this.teamMembers = teamMembers;
+    }
+
 
     /**
      * Get the value of provisions

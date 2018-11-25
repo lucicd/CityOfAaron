@@ -1,7 +1,7 @@
 // The ListMenuView class - part of the view layer
 // Object of this class manages the List menu
 // Author: Drazen Lucic, Carolyn Murray, Gail Lee
-// Date last modified: November 13, 2018
+// Date last modified: November 25, 2018
 //-------------------------------------------------------
 package view;
 
@@ -9,6 +9,7 @@ import cityofaaron.CityOfAaron;
 import java.util.ArrayList;
 import model.Game;
 import model.ListItem;
+import model.TeamMember;
 
 /**
  *
@@ -60,8 +61,9 @@ public class ListMenuView extends MenuView{
         }
     }
     
+    //Drazen
     //The listAnimals method
-    //Purpose: lists the animals in the sorehouse
+    //Purpose: lists the animals in the storehouse
     //Parameters: none
     //Returns: none
     //================================================
@@ -98,6 +100,7 @@ public class ListMenuView extends MenuView{
         //show report title
         System.out.println("\nTools in the City of Aaron");
                
+        //Loop through the list and show the items
         for (ListItem tool: tools) {
             String name = tool.getName();
             int number = tool.getNumber();
@@ -121,6 +124,7 @@ public class ListMenuView extends MenuView{
         //show report title
         System.out.println("\nProvisions in the City of Aaron");
                
+        //Loop through the list and show the items
         for (ListItem provision: provisions) {
             String name = provision.getName();
             int number = provision.getNumber();
@@ -129,6 +133,20 @@ public class ListMenuView extends MenuView{
     }
 
     private void listTeam() {
-        System.out.println("listTeam options selected");
+        //get the game object
+        Game game = CityOfAaron.getGame();
+        
+        //use the game object to get the list of team members
+        ArrayList<TeamMember> teamMembers = game.getTeamMembers();
+        
+        //show report title
+        System.out.println("\nDevelopment team:");
+        
+        //Loop through the list and show the team members
+        for (TeamMember member: teamMembers) {
+            String name = member.getName();
+            String title = member.getTitle();
+            System.out.format("%s, %s\n", name, title);
+        }
     }
 }
