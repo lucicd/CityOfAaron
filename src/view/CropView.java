@@ -33,17 +33,17 @@ public class CropView {
         // Get the cost of land for this round.
         int price = CropControl.calcLandCost();
         
-        // Prompt the user to enter the number of acres to buy
         System.out.format("\nLand is selling for %d bushels per acre.\n", price);
         
-        // Get the user’s input and save it.
         int toBuy;
         boolean paramsNotOkay;
         do {
             paramsNotOkay = false;
 
             try {
+                // Prompt the user to enter the number of acres to buy
                 System.out.print("How many acres of land do you wish to buy? ");
+                // Get the user’s input and save it.
                 toBuy = keyboard.nextInt();
                 // Call the buyLand() method in the control layer to buy the land
                 CropControl.buyLand(price, toBuy, cropData);
@@ -71,16 +71,29 @@ public class CropView {
         // Get the cost of land for this round.
         int price = CropControl.calcLandCost();
         
-        // Prompt the user to enter the number of acres to sell
         System.out.format("\nLand is selling for %d bushels per acre.\n", price);
-        System.out.print("How many acres of land do you wish to sell? ");
         
-        // Get the user’s input and save it.
         int toSell;
-        toSell = keyboard.nextInt();
-        
-        // Call the sellLand() method in the control layer to sell the land
-        CropControl.sellLand(price, toSell, cropData);
+        boolean paramsNotOkay;
+        do {
+            paramsNotOkay = false;
+            try {
+                // Prompt the user to enter the number of acres to sell
+                System.out.print("How many acres of land do you wish to sell? ");
+                // Get the user’s input and save it.
+                toSell = keyboard.nextInt();
+                // Call the sellLand() method in the control layer to sell the land
+                CropControl.sellLand(price, toSell, cropData);
+            } catch (CropException e) {
+                System.out.println("I am sorry master, I cannot do this.");
+                System.out.println(e.getMessage());
+                paramsNotOkay = true;
+            } catch (InputMismatchException e) {
+                System.out.println("Please enter an integer");
+                keyboard.next();
+                paramsNotOkay = true;
+            }
+        } while (paramsNotOkay);
         
         //output how much land we own now
         System.out.format("You now own %d acres of land.\n", cropData.getAcresOwned());

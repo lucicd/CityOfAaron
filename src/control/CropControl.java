@@ -51,23 +51,25 @@ public class CropControl {
 
     /**
      * The sellLand() method Purpose: to sell land
-     *
+     * Preconditions: acresToSell must be positive and <= acresOwned
      * @param landPrice
      * @param acresToSell
      * @param cropData
-     * @return the number of acres owned after selling Preconditions:
-     * acresToSell must be positive and <= acresOwned
+     * @throws exceptions.CropException
      */
-    public static int sellLand(int landPrice, int acresToSell, CropData cropData) {
-        // if acresToSell < 0, return -1
+    public static void sellLand(int landPrice, 
+            int acresToSell, CropData cropData)
+            throws CropException
+    {
+        // if acresToSell < 0 throw exception
         if (acresToSell < 0) {
-            return -1;
+            throw new CropException("A negative value was input");
         }
 
-        //if acresToSell > acresOwned, return -1
+        //if acresToSell > acresOwned, throw exception
         int acresOwned = cropData.getAcresOwned();
         if (acresToSell > acresOwned) {
-            return -1;
+            throw new CropException("There is insufficient land to sell");
         }
 
         //acresOwned = acresOwned - acresToSell
@@ -78,9 +80,6 @@ public class CropControl {
         int wheatInStore = cropData.getWheatInStore();
         wheatInStore += acresToSell * landPrice;
         cropData.setWheatInStore(wheatInStore);
-
-        //return acresOwned
-        return acresOwned;
     }
 
     /**
@@ -95,7 +94,7 @@ public class CropControl {
             int acresToBuy, CropData cropData)
             throws CropException
     {
-        // if acresToBuy < 0, return -1
+        // if acresToBuy < 0, throw exception
         if (acresToBuy < 0) {
             throw new CropException("A negative value was input");
         }
@@ -103,7 +102,7 @@ public class CropControl {
         // requiredWheat = acresToBuy * landPrice
         int requiredWheat = acresToBuy * landPrice;
 
-        // if requiredWheat > wheatInStore, return -1
+        // if requiredWheat > wheatInStore, throw exception
         int wheatInStore = cropData.getWheatInStore();
         if (requiredWheat > wheatInStore) {
             throw new CropException("There is insufficient wheat to buy this much land");
