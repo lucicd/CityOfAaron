@@ -6,6 +6,7 @@
  */
 package control;
 
+import exceptions.CropException;
 import model.CropData;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -32,9 +33,12 @@ public class CropControlBuyLandTest {
         int acresToBuy = 10;
         int landPrice = 20;
         int expResult = 2810;
-        int result = CropControl.buyLand(landPrice, acresToBuy, cropData);
-        assertEquals(expResult, result);
-        assertEquals(expResult, cropData.getAcresOwned());
+        try {
+            CropControl.buyLand(landPrice, acresToBuy, cropData);
+            assertEquals(expResult, cropData.getAcresOwned());
+        } catch (Exception e) {
+            fail("Unexpected exception: " + e.getMessage());
+        }
     }
     
     @Test
@@ -45,9 +49,15 @@ public class CropControlBuyLandTest {
         cropData.setAcresOwned(2800);
         int acresToBuy = -5;
         int landPrice = 20;
-        int expResult = -1;
-        int result = CropControl.buyLand(landPrice, acresToBuy, cropData);
-        assertEquals(expResult, result);
+        int expResult = 2800;
+        try {
+            CropControl.buyLand(landPrice, acresToBuy, cropData);
+            fail("Exception was expected");
+        } catch (CropException e) {
+            assertEquals(expResult, cropData.getAcresOwned());            
+        } catch (Exception e) {
+            fail("Unexpected exception: " + e.getMessage());
+        }
     }
     
     @Test
@@ -58,9 +68,15 @@ public class CropControlBuyLandTest {
         cropData.setAcresOwned(2800);
         int acresToBuy = 100;
         int landPrice = 20;
-        int expResult = -1;
-        int result = CropControl.buyLand(landPrice, acresToBuy, cropData);
-        assertEquals(expResult, result);
+        int expResult = 2800;
+        try {
+            CropControl.buyLand(landPrice, acresToBuy, cropData);
+            fail("Exception was expected");
+        } catch (CropException e) {
+            assertEquals(expResult, cropData.getAcresOwned());            
+        } catch (Exception e) {
+            fail("Unexpected exception: " + e.getMessage());
+        }
     }
     
     @Test
@@ -72,8 +88,12 @@ public class CropControlBuyLandTest {
         int acresToBuy = 25;
         int landPrice = 20;
         int expResult = 2825;
-        int result = CropControl.buyLand(landPrice, acresToBuy, cropData);
-        assertEquals(expResult, result);
+        try {
+            CropControl.buyLand(landPrice, acresToBuy, cropData);
+            assertEquals(expResult, cropData.getAcresOwned());
+        } catch (Exception e) {
+            fail("Unexpected exception: " + e.getMessage());
+        }
     }
     
     @Test
@@ -85,7 +105,11 @@ public class CropControlBuyLandTest {
         int acresToBuy = 0;
         int landPrice = 20;
         int expResult = 2800;
-        int result = CropControl.buyLand(landPrice, acresToBuy, cropData);
-        assertEquals(expResult, result);
+        try {
+            CropControl.buyLand(landPrice, acresToBuy, cropData);
+            assertEquals(expResult, cropData.getAcresOwned());
+        } catch (Exception e) {
+            fail("Unexpected exception: " + e.getMessage());
+        }
     }
 }

@@ -9,6 +9,8 @@ import model.*;
 import control.*;
 import java.util.Scanner;
 import cityofaaron.CityOfAaron;
+import exceptions.CropException;
+import java.util.InputMismatchException;
 
 /**
  *
@@ -33,14 +35,28 @@ public class CropView {
         
         // Prompt the user to enter the number of acres to buy
         System.out.format("\nLand is selling for %d bushels per acre.\n", price);
-        System.out.print("How many acres of land do you wish to buy? ");
         
         // Get the user’s input and save it.
         int toBuy;
-        toBuy = keyboard.nextInt();
-        
-        // Call the buyLand() method in the control layer to buy the land
-        CropControl.buyLand(price, toBuy, cropData);
+        boolean paramsNotOkay;
+        do {
+            paramsNotOkay = false;
+
+            try {
+                System.out.print("How many acres of land do you wish to buy? ");
+                toBuy = keyboard.nextInt();
+                // Call the buyLand() method in the control layer to buy the land
+                CropControl.buyLand(price, toBuy, cropData);
+            } catch (CropException e) {
+                System.out.println("I am sorry master, I cannot do this.");
+                System.out.println(e.getMessage());
+                paramsNotOkay = true;
+            } catch (InputMismatchException e) {
+                System.out.println("Please enter an integer");
+                keyboard.next();
+                paramsNotOkay = true;
+            }
+        } while (paramsNotOkay);
         
         //output how much land we own now
         System.out.format("You now own %d acres of land.\n", cropData.getAcresOwned());
