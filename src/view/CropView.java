@@ -32,7 +32,7 @@ public class CropView {
     {
         // Get the cost of land for this round.
         int price = CropControl.calcLandCost();
-        
+
         System.out.format("\nLand is selling for %d bushels per acre.\n", price);
         
         int toBuy;
@@ -126,19 +126,32 @@ public class CropView {
     // Returns: none
     public static void plantCropsView()
     {
-        // Prompt the user to enter the acares of land for planting
-        System.out.print("\nHow many acres of land do you want to plant? ");
-        
-        // Get the user’s input and save it.
         int acresToPlant;
-        acresToPlant = keyboard.nextInt();
+        boolean paramsNotOkay;
+        do 
+        {
+            paramsNotOkay=false;
+            try {
+            System.out.print("How many acres of land do you want to plant?");
+            // Get the user’s input and save it.
+            acresToPlant = keyboard.nextInt();
+            
+          // Call the plantCrops() method in the control layer to plant the crops
+        CropControl.plantCrops(acresToPlant,cropData);
+            } catch(CropException e){
+            System.out.println("I am sorry master, I cannot do this.");
+            System.out.println(e.getMessage());
+            paramsNotOkay=true;
+            }catch(InputMismatchException e){
+                System.out.println("Please enter an integer");
+                keyboard.next();
+                paramsNotOkay=true;
+            }
+        }while(paramsNotOkay);
         
-        // Call the plantCrops() method in the control layer to plant the crops
-        CropControl.plantCrops(acresToPlant, cropData);
-        
-        //output The number of bushels that are left in store
-        System.out.format("You now have planted %d aces of land.\n", cropData.getAcresPlanted());
-    }
+    //output how much land we own now
+        System.out.format("You now own %d acres of land.\n", cropData.getAcresOwned());
+    } 
     
     // The displayCropsReportView method
     // Purpose: Display the data from the cropData object

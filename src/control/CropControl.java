@@ -174,39 +174,39 @@ public class CropControl {
         return wheatToFeed;
     }
 
+     
     /**
      * The plantCrop() method Purpose: To plant crop
      *
      * @param acresToPlant
      * @param cropData
-     * @return acresPlanted the number of acres owned after planting
-     * Pre-conditions: The number of acres to plant is a positive value (can be
-     * 0 as well). Required bushels is a less than or equal to wheat in store
-     * Acres to plant must be less than or equal to acres owned City population
-     * must be greater than or equal to number of acres to plant / 10
+     * @throws exceptions.CropException
      */
-    public static int plantCrops(int acresToPlant, CropData cropData) {
+    public static void plantCrops(int acresToPlant, CropData cropData) 
+         throws CropException
+    {
 
-        //if acresToPlant <0, return -1
+        //if acresToPlant <0
         if (acresToPlant < 0) {
-            return -1;
-        }
+            throw new CropException("A negative value was input");
+    }
+    
         //requiredushels=acresToPlant/2
         int requiredBushels = acresToPlant / ACRES_PER_BUSHEL;
         if (acresToPlant % ACRES_PER_BUSHEL > 0) {
             requiredBushels++;
         }
 
-        //requiredBushels > wheatInStore, return -1
+        //requiredBushels > wheatInStore
         int wheatInStore = cropData.getWheatInStore();
         if (requiredBushels > wheatInStore) {
-            return -1;
+           throw new CropException("There was insuficient wheat in store to plant crops");
         }
 
-        //acresToPlant > acresOwned, return -1 
+        //acresToPlant > acresOwned
         int acresOwned = cropData.getAcresOwned();
         if (acresToPlant > acresOwned) {
-            return -1;
+             throw new CropException("There was not enough acres to plant the crop");
         }
 
         //If RequiredPopultation>population
@@ -216,7 +216,7 @@ public class CropControl {
         }
         int population = cropData.getPopulation();
         if (requiredPopulation > population) {
-            return -1;
+             throw new CropException("There was not enough people to plant the crops");
         }
 
         //requiedBushels - wheatInStore;
@@ -224,8 +224,7 @@ public class CropControl {
 
         cropData.setWheatInStore(wheatInStore);
         cropData.setAcresPlanted(acresToPlant);
-        //return acresPlanted 
-        return acresToPlant;
+      
     }
     
     public static int growPopulation(int growthPercentage, CropData cropData) {
