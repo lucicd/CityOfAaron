@@ -92,15 +92,31 @@ public class CropView {
     // Returns: none
     public static void feedPeopleView()
     {
-        // Prompt the user to enter the number of bushels set aside to feed the people
-        System.out.print("\nHow many bushels do you want to set aside to feed the people? ");
-        
-        // Get the user’s input and save it.
+                
+       
         int wheatToFeed;
-        wheatToFeed = keyboard.nextInt();
-        
+        boolean paramsNotOkay;
+        do {
+            paramsNotOkay=false;
+            
+            try{
+               System.out.print("How many bushels do you want to set aside to feed the people?");
+        // Get the user’s input and save it.
+               wheatToFeed = keyboard.nextInt();
+               
         // Call the feedPeople() method in the control layer to feed the people
         CropControl.feedPeople(wheatToFeed, cropData);
+        }catch (CropException e){
+         System.out.println("I am sorry master, I cannot do this.");
+         System.out.println(e.getMessage());
+         paramsNotOkay=true;
+        }catch (InputMismatchException e){
+          System.out.println("Please enter an integer");
+          keyboard.next();
+          paramsNotOkay=true;
+          
+         }
+        } while (paramsNotOkay);
         
         //output The number of bushels that are left in store
         System.out.format("You now have %d bushels in store.\n", cropData.getWheatInStore());

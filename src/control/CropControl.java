@@ -148,22 +148,20 @@ public class CropControl {
     /**
      * The feedPeople() method Purpose: To allocate wheat for feeding the people
      *
-     * @param the number of bushels of wheat allocated to feed the people
-     * @param a reference to a CropData object
-     * @return the number bushels of wheat set aside to feed the people
-     * Pre-conditions: the number of bushels of wheat allocated to feed the
-     * people must be a positive number (can be zero as well) and must not
-     * exceed available wheat in the store
+     * @param wheatToFeed 
+     * @param cropData
+     * @throws exceptions.CropException
      */
-    public static int feedPeople(int wheatToFeed, CropData cropData) {
+    public static void feedPeople(int wheatToFeed,CropData cropData) 
+            throws CropException{
 
-        // If the number of bushels to feed the people is negative, this is an error. Return a -1.
+        // If the number of bushels to feed the people is negative, this is an error. 
         if (wheatToFeed < 0) {
-            return -1;
+            throw new CropException("A negative value was input");
         }
-        // If the number of bushels to feed the people is greater than the wheat in store, this is an error. Return a -1.
+        // If the number of bushels to feed the people is greater than the wheat in store, this is an error. 
         if (wheatToFeed > cropData.getWheatInStore()) {
-            return -1;
+                throw new CropException("There is insufficient wheat to feed the people");
         }
         // Subtract the number of bushels to feed the people from the wheat in store and save the result into CropData object.
         int newWheatInStore = cropData.getWheatInStore() - wheatToFeed;
@@ -171,8 +169,8 @@ public class CropControl {
         
         // Save the number of bushels to feed the people into CropData object
         cropData.setWheatForPeople(wheatToFeed);
-        // Return the number of bushels to feed the people.
-        return wheatToFeed;
+        
+       
     }
 
     /**
