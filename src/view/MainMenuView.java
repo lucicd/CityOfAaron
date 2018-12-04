@@ -6,6 +6,8 @@
 package view;
 
 import control.GameControl;
+import java.io.FileInputStream;
+import java.io.ObjectInputStream;
 
 /**
  *
@@ -49,7 +51,7 @@ public class MainMenuView extends MenuView {
                 displayHelpMenuView();
                 break;
             case 4://save game
-                displaySaveGameView();
+                saveGame();
                 break;
             case 5:
                 System.out.println("Thanks for playing...goodbye.");
@@ -98,7 +100,19 @@ public class MainMenuView extends MenuView {
     //Returns:none
     //===========================================
     public void startSavedGame(){
-        System.out.println("\nStart saved game option selected.");
+        // prompt user and get a file path
+        System.out.println("\nPlease enter file path:");
+        String filePath = keyboard.next();
+         
+        // call the getSavedGame( ) method in the GameControl class to load the game
+        GameControl.getSavedGame(filePath);
+        
+        // Show the crops report
+        CropView.displayCropsReportView();
+        
+        // display the game menu for the loaded game
+        GameMenuView gmv=new GameMenuView( );
+        gmv.displayMenuView();
     }
     //The displayHelpMenuView()
     //Purposed: displays help menu
@@ -109,12 +123,23 @@ public class MainMenuView extends MenuView {
         HelpMenuView mmv = new HelpMenuView();
         mmv.displayMenuView();
     }
-    // The displaySaveGameView()
+    // The saveGame()
     //Purposed: display save game view
     //Parameters:none
     //Returns:none
     //==============================================
-    public void displaySaveGameView(){
-        System.out.println("\nDisplay save game view options selected.");
+    public void saveGame(){
+        // prompt user and get a file path
+        System.out.println("\nPlease enter file path:");
+        String filePath = keyboard.next();
+         
+        // call the saveGame() method in the GameControl class to load the game
+        GameControl.saveGame(filePath);
+        
+        System.out.println("\nGame saved into file: " + filePath);
+
+        // display the game menu for the saved game
+        GameMenuView gmv=new GameMenuView( );
+        gmv.displayMenuView();
     }
 }

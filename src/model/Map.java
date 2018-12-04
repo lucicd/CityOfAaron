@@ -6,11 +6,13 @@
  */
 package model;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Drazen
  */
-public class Map {
+public class Map implements Serializable {
     private int rowCount;               // stores the number of rows 
     private int colCount;               // stores the number of columns
     private Location[][] locations;     // a reference to a 2-dimensional array

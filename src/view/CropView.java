@@ -21,8 +21,8 @@ public class CropView {
     private static Scanner keyboard = new Scanner(System.in);   
      
     // Get references to the Game object and the CropData object
-    static private Game game = CityOfAaron.getGame();
-    static private CropData cropData = game.getCropData();
+    //static private Game game = CityOfAaron.getGame();
+    //static private CropData cropData = game.getCropData();
     
     // The buyLandView method
     // Purpose: interface with the user input for buying land
@@ -30,6 +30,10 @@ public class CropView {
     // Returns: none
     public static void buyLandView()
     {
+        //Get references to the game and cropData objects
+        Game game = CityOfAaron.getGame();
+        CropData cropData = game.getCropData();
+        
         // Get the cost of land for this round.
         int price = CropControl.calcLandCost();
 
@@ -68,6 +72,10 @@ public class CropView {
     
     public static void sellLandView()
     {
+        //Get references to the game and cropData objects
+        Game game = CityOfAaron.getGame();
+        CropData cropData = game.getCropData();
+        
         // Get the cost of land for this round.
         int price = CropControl.calcLandCost();
         
@@ -105,7 +113,9 @@ public class CropView {
     // Returns: none
     public static void feedPeopleView()
     {
-                
+        //Get references to the game and cropData objects
+        Game game = CityOfAaron.getGame();
+        CropData cropData = game.getCropData();        
        
         int wheatToFeed;
         boolean paramsNotOkay;
@@ -142,6 +152,10 @@ public class CropView {
     // Returns: none
     public static void plantCropsView()
     {
+        //Get references to the game and cropData objects
+        Game game = CityOfAaron.getGame();
+        CropData cropData = game.getCropData();
+        
         int acresToPlant;
         boolean paramsNotOkay;
         do 
@@ -175,6 +189,11 @@ public class CropView {
     // Returns: none
     public static void displayCropsReportView()
     {
+        //Get references to the game and cropData objects
+        Game game = CityOfAaron.getGame();
+        CropData cropData = game.getCropData();
+        
+        System.out.format("\nWelcome %s\n", CityOfAaron.getGame().getPlayer().getName());
         System.out.print("\n***********************************");
         System.out.print("\n* CITY OF AARON: CROP DATA REPORT *");
         System.out.print("\n***********************************");
@@ -210,6 +229,9 @@ public class CropView {
         
         // Call the plantCrops() method
         plantCropsView();
+        
+        // Call the displayCropsReportView() method
+        displayCropsReportView();
 
         // add calls to the other crop view methods
         // as they are written

@@ -6,11 +6,13 @@
  */
 package model;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Drazen
  */
-public class Player {
+public class Player implements Serializable {
 
     public Player() {
     }

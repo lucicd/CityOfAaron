@@ -6,13 +6,14 @@
  */
 package model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  *
  * @author tweet
  */
-public class Game {
+public class Game implements Serializable {
 
     
 

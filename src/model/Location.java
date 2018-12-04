@@ -6,13 +6,18 @@
  */
 package model;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Carolyn Murray
  */
-public class Location {
+public class Location implements Serializable {
 
     private String description;
+
+    public Location() {
+    }
 
     /**
      * Get the value of description
