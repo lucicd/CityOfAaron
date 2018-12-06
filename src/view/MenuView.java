@@ -4,6 +4,7 @@
 //-------------------------------------------------------
 package view;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
@@ -26,15 +27,25 @@ public abstract class MenuView implements ViewInterface {
         int userInput=0;
         do
         {
-            // get user input from the keyboard
-            userInput = keyboard.nextInt();
-            // if it is not a valid value, output an error message
+            while (true) {
+                try {
+                    // get user input from the keyboard
+                    userInput = keyboard.nextInt();
+                    //Break the endless loopo
+                    break;
+                } catch (InputMismatchException e) {
+                    System.out.println("Please enter an integer.");
+                    keyboard.next();
+                }
+            }
+            // if user input is not a valid value, output an error message
             if(userInput < 1 || userInput > max){
                 System.out.format("\nError: input value must be between 1 and %d.", max);
             }
             // loop back to the top of the loop if input was not valid
             // end loop
-        } while (userInput <1 || userInput > max);
+        } while (userInput < 1 || userInput > max);
+        
         return userInput;
     }
 
@@ -54,6 +65,4 @@ public abstract class MenuView implements ViewInterface {
             doAction(menuOption);
         } while (menuOption != max);
     }
-    
-    
 }

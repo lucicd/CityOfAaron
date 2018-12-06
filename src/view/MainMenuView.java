@@ -6,6 +6,7 @@
 package view;
 
 import control.GameControl;
+import exceptions.CropException;
 import java.io.FileInputStream;
 import java.io.ObjectInputStream;
 
@@ -104,15 +105,19 @@ public class MainMenuView extends MenuView {
         System.out.println("\nPlease enter file path:");
         String filePath = keyboard.next();
          
-        // call the getSavedGame( ) method in the GameControl class to load the game
-        GameControl.getSavedGame(filePath);
+        try {
+            // call the getSavedGame( ) method in the GameControl class to load the game
+            GameControl.getSavedGame(filePath);
         
-        // Show the crops report
-        CropView.displayCropsReportView();
+            // Show the crops report
+            CropView.displayCropsReportView();
         
-        // display the game menu for the loaded game
-        GameMenuView gmv=new GameMenuView( );
-        gmv.displayMenuView();
+            // display the game menu for the loaded game
+            GameMenuView gmv=new GameMenuView( );
+            gmv.displayMenuView();
+        } catch (CropException e) {
+            System.out.println(e.getMessage());
+        }
     }
     //The displayHelpMenuView()
     //Purposed: displays help menu
@@ -133,13 +138,17 @@ public class MainMenuView extends MenuView {
         System.out.println("\nPlease enter file path:");
         String filePath = keyboard.next();
          
-        // call the saveGame() method in the GameControl class to load the game
-        GameControl.saveGame(filePath);
+        try {
+            // call the saveGame() method in the GameControl class to load the game
+            GameControl.saveGame(filePath);
         
-        System.out.println("\nGame saved into file: " + filePath);
+            System.out.println("\nGame saved into file: " + filePath);
 
-        // display the game menu for the saved game
-        GameMenuView gmv=new GameMenuView( );
-        gmv.displayMenuView();
+            // display the game menu for the saved game
+            GameMenuView gmv=new GameMenuView( );
+            gmv.displayMenuView();
+        } catch (CropException e) {
+            System.out.println(e.getMessage());
+        }
     }
 }

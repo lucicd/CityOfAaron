@@ -14,10 +14,9 @@ import java.io.Serializable;
  */
 public class CropData implements Serializable {
 
-    public CropData() {
-    }
+    public CropData() {}
     
-        private int year;
+    private int year;
 
     /**
      * Get the value of year

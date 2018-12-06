@@ -7,6 +7,7 @@
 package control;
 import model.*;
 import cityofaaron.CityOfAaron;
+import exceptions.CropException;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
@@ -22,9 +23,12 @@ public class GameControl {
     // size of the Locations array
     private static final int MAX_ROW = 5;
     private static final int MAX_COL = 5;
-    private static final Game game = new Game();
+    //private static final Game game = new Game();
 
     public static void createNewGame(String _name){
+        // Create a new Game object
+        Game game = new Game();
+        
         // Create a new Player object.
         Player player = new Player();
         
@@ -78,7 +82,7 @@ public class GameControl {
         theCrops.setOffering(300);
         theCrops.setAcresPlanted(1000); 
         
-        game.setCropData(theCrops);         
+        CityOfAaron.getGame().setCropData(theCrops);         
     }
     
     // The createMap method
@@ -206,7 +210,7 @@ public class GameControl {
         theMap.setLocation(4, 2, loc);
         theMap.setLocation(4, 3, loc);
         
-        game.setMap(theMap);
+        CityOfAaron.getGame().setMap(theMap);
     }
     
     //createAnimalsList method
@@ -223,7 +227,7 @@ public class GameControl {
         animals.add(new ListItem("Horse", 350));
         animals.add(new ListItem("Goat", 50));
         
-        game.setAnimals(animals);
+        CityOfAaron.getGame().setAnimals(animals);
     }
     
     //createToolsList method
@@ -240,7 +244,7 @@ public class GameControl {
         tools.add(new ListItem("Sickel", 150));
         tools.add(new ListItem("Plow", 50));
         
-        game.setTools(tools);
+        CityOfAaron.getGame().setTools(tools);
     }
     
     //createProvisionsList method
@@ -257,7 +261,7 @@ public class GameControl {
         provisions.add(new ListItem("Flour", 550));
         provisions.add(new ListItem("Rice", 100));
         
-        game.setProvisions(provisions);
+        CityOfAaron.getGame().setProvisions(provisions);
     }
     
     //createTeamMembersList method
@@ -267,9 +271,9 @@ public class GameControl {
     //Returns: none
     //Made by Drazen
     public static void createTeamMembersList() {
-        ArrayList<TeamMember> teamMembers = 
-                new ArrayList<TeamMember>(Arrays.asList(TeamMember.values()));
-        game.setTeamMembers(teamMembers);
+        ArrayList<TeamMember> teamMembers;
+        teamMembers = new ArrayList<>(Arrays.asList(TeamMember.values()));
+        CityOfAaron.getGame().setTeamMembers(teamMembers);
     }
     
     // the getSavedGame method
@@ -277,38 +281,38 @@ public class GameControl {
     // Parameters: the file path
     // Returns: none
     // Side Effect: the game reference in the driver is updated
-    public static void getSavedGame(String filePath)
+    public static void getSavedGame(String filePath) throws CropException
     {
-        Game theGame = null;
-        
         try (FileInputStream fips = new FileInputStream(filePath))
         {
             ObjectInputStream input = new ObjectInputStream(fips);
-            theGame = (Game) input.readObject();
-            CityOfAaron.setGame(theGame);
+            Game game = (Game) input.readObject();
+            CityOfAaron.setGame(game);
         }
         catch(Exception e)
         {
             System.out.println("\nThere was an error reading the saved game file. " + e.getMessage());
+            throw new CropException("Cannot load and start the saved game.");
         }
     }
     
-    public static void saveGame(String filePath)
+    public static void saveGame(String filePath) throws CropException
     {
-        Game theGame = CityOfAaron.getGame();
-        if (theGame == null) {
+        Game game = CityOfAaron.getGame();
+        if (game == null) {
             createNewGame("Joshua");
-            theGame = CityOfAaron.getGame();
+            game = CityOfAaron.getGame();
         }
         
         try (FileOutputStream fops = new FileOutputStream(filePath))
         {
             ObjectOutputStream output = new ObjectOutputStream(fops);
-            output.writeObject(theGame);
+            output.writeObject(game);
         }
         catch(Exception e)
         {
             System.out.println("\nThere was an error saving the game file. " + e.getMessage());
+            throw new CropException("Cannot save the game.");
         }
     }
 }

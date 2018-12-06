@@ -193,10 +193,10 @@ public class CropView {
         Game game = CityOfAaron.getGame();
         CropData cropData = game.getCropData();
         
-        System.out.format("\nWelcome %s\n", CityOfAaron.getGame().getPlayer().getName());
-        System.out.print("\n***********************************");
-        System.out.print("\n* CITY OF AARON: CROP DATA REPORT *");
-        System.out.print("\n***********************************");
+        System.out.format("\n%s, here is your report!", CityOfAaron.getGame().getPlayer().getName());
+        System.out.print("\n********************************");
+        System.out.print("\n* CITY OF AARON: ANNUAL REPORT *");
+        System.out.print("\n********************************");
         System.out.format("\nWheat in store:\t\t%d", cropData.getWheatInStore());
         System.out.format("\nWheat for people:\t%d", cropData.getWheatForPeople());
         System.out.format("\nCrop yield:\t\t%d", cropData.getCropYield());
