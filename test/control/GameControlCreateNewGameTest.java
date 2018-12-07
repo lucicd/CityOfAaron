@@ -29,6 +29,7 @@ public class GameControlCreateNewGameTest {
     
     @Test
     public void testDefaultCropData() {
+        System.out.println("createNewGame - Test Case Defaults");
         CropData cropData = game.getCropData();
         assertEquals(0, cropData.getYear());
         assertEquals(100, cropData.getPopulation());
@@ -47,12 +48,14 @@ public class GameControlCreateNewGameTest {
     
     @Test
     public void testPlayer() {
+        System.out.println("createNewGame - Test Case Player");
         Player player = game.getPlayer();
         assertEquals("Player 1", player.getName());
     }
     
     @Test
     public void testMap() {
+        System.out.println("createNewGame - Test Case Map");
         Map map = game.getMap();
         assertEquals(5, map.getRowCount());
         assertEquals(5, map.getColCount());
@@ -60,6 +63,7 @@ public class GameControlCreateNewGameTest {
     
     @Test
     public void testAnimalsList() {
+        System.out.println("createNewGame - Test Case Animals List");
         ArrayList<ListItem> animals = game.getAnimals();
         assertEquals(4, animals.size());
         assertEquals("Sheep", animals.get(0).getName());
@@ -68,6 +72,7 @@ public class GameControlCreateNewGameTest {
     
     @Test
     public void testToolsList() {
+        System.out.println("createNewGame - Test Case Tools List");
         ArrayList<ListItem> tools = game.getTools();
         assertEquals(4, tools.size());
         assertEquals("Axe", tools.get(0).getName());
@@ -76,6 +81,7 @@ public class GameControlCreateNewGameTest {
     
     @Test
     public void testProvisionsList() {
+        System.out.println("createNewGame - Test Case Provisions List");
         ArrayList<ListItem> provisions = game.getProvisions();
         assertEquals(4, provisions.size());
         assertEquals("Sugar", provisions.get(0).getName());
@@ -84,6 +90,7 @@ public class GameControlCreateNewGameTest {
     
     @Test
     public void testTeamMembersList() {
+        System.out.println("createNewGame - Test Case Team Members List");
         ArrayList<TeamMember> teamMembers = game.getTeamMembers();
         assertEquals(3, teamMembers.size());
         assertEquals("Gail Lee", teamMembers.get(0).getName());

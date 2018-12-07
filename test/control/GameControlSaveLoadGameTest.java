@@ -29,6 +29,7 @@ public class GameControlSaveLoadGameTest {
     
     @Test
     public void saveLoadCropDataTest() {
+        System.out.println("Save/Load Game Test - Test Case Game");
         try {
             Game game = CityOfAaron.getGame();
             //Do some changes in the cropData object
@@ -92,8 +93,10 @@ public class GameControlSaveLoadGameTest {
     }
     
     @Test
-    public void saveLoadMapTest() { 
-        //Get default description and symbol
+    public void saveLoadMapTest() {
+        System.out.println("Save/Load Game Test - Test Case Map");
+        
+//Get default description and symbol
         Map map = CityOfAaron.getGame().getMap();
         Location location = map.getLocation(3, 3);
         String defaultDescription = location.getDescription();
@@ -134,6 +137,8 @@ public class GameControlSaveLoadGameTest {
     
     @Test
     public void saveLoadPlayerTest() {
+        System.out.println("Save/Load Game Test - Test Case Player");
+        
         //Get player's name
         String name = CityOfAaron.getGame().getPlayer().getName();
         
@@ -161,6 +166,8 @@ public class GameControlSaveLoadGameTest {
     
     @Test
     public void saveLoadAnimalsListTest() {
+        System.out.println("Save/Load Game Test - Test Case Animals List");
+        
         try {
             GameControl.saveGame(filePath);
             int size = CityOfAaron.getGame().getAnimals().size();
@@ -180,6 +187,8 @@ public class GameControlSaveLoadGameTest {
     
     @Test
     public void saveLoadToolsListTest() {
+        System.out.println("Save/Load Game Test - Test Tools List");
+        
         try {
             GameControl.saveGame(filePath);
             int size = CityOfAaron.getGame().getTools().size();
@@ -199,6 +208,8 @@ public class GameControlSaveLoadGameTest {
     
     @Test
     public void saveLoadProvisionsListTest() {
+        System.out.println("Save/Load Game Test - Test Provisions List");
+        
         try {
             GameControl.saveGame(filePath);
             int size = CityOfAaron.getGame().getProvisions().size();
