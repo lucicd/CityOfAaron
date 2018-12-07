@@ -6,6 +6,8 @@
 package view;
 
 import cityofaaron.CityOfAaron;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import model.Game;
 import model.ListItem;
@@ -32,8 +34,11 @@ public class ListMenuView extends MenuView{
            " 2 - List or view the tools in the storehouse\n" +
            " 3 - List or view the provisions in the storehouse\n" +
            " 4 - List or view the people in the development team\n" +
-           " 5 - Return to the Game menu\n",
-        5);
+           " 5 - Save the list of animals in the storehouse\n" +
+           " 6 - Save the list of tools in the storehouse\n" +
+           " 7 - Save the list of provisions in the storehouse\n" +
+           " 8 - Return to the Game menu\n",
+        8);
      
     }
     //The doAction method
@@ -56,9 +61,43 @@ public class ListMenuView extends MenuView{
             case 4://List or view the developers of this game
                 listTeam();
                 break;
-            case 5://Return to the Game menu
+            case 5://Save the list of animals in the storehouse
+                listAnimalsToFile();
+                break;
+            case 6://Save the list of tools in the storehouse
+                listToolsToFile();
+                break;
+            case 7://Save the list of provisions in the storehouse
+                listProvisionsToFile();
+                break;
+            case 8://Return to the Game menu
                 return;
         }
+    }
+    
+    //Drazen
+    //The prepareAnimalsReport method
+    //Purpose: prepares the lists the animals in the storehouse report
+    //Parameters: none
+    //Returns: String report
+    //================================================
+    private String prepareAnimalsReport() {
+        //get the game object
+        Game game = CityOfAaron.getGame();
+        
+        //use the game object to get the list of animals in the storehouse
+        ArrayList<ListItem> animals = game.getAnimals();
+        
+        //build report header
+        String report = "*****************************\n" +
+                        "* Animals in the Storehouse *\n" +
+                        "*****************************\n";
+        for (ListItem animal: animals) {
+            String name = animal.getName();
+            int number = animal.getNumber();
+            report += String.format("%-20s %d\n", name, number);
+        }
+        return report;
     }
     
     //Drazen
@@ -68,19 +107,25 @@ public class ListMenuView extends MenuView{
     //Returns: none
     //================================================
     private void listAnimals() {
-        //get the game object
-        Game game = CityOfAaron.getGame();
+        System.out.println(prepareAnimalsReport());
+    }
+    
+    //Drazen
+    //The listAnimalsToFile method
+    //Purpose: lists the animals in the storehouse into a file
+    //Parameters: none
+    //Returns: none
+    //================================================
+    private void listAnimalsToFile() {
+        //Define file name
+        String fileName = "animals.txt";
         
-        //use the game object to get the list of animals in the storehouse
-        ArrayList<ListItem> animals = game.getAnimals();
-        
-        //show report title
-        System.out.println("\nAnimals in the City of Aaron");
-               
-        for (ListItem animal: animals) {
-            String name = animal.getName();
-            int number = animal.getNumber();
-            System.out.format("%s\t\t%d\n", name, number);
+        try (PrintWriter out = new PrintWriter(fileName)) {
+            //Prepare the report and print it to a file
+            out.print(prepareAnimalsReport());
+            System.out.println("\nList of animals saved to a file " + fileName);
+        } catch (IOException e) {
+            System.out.println("File Error. " + e.getMessage());
         }
     }
    
@@ -107,6 +152,10 @@ public class ListMenuView extends MenuView{
             System.out.format("%s\t\t%d\n", name, number);
         }
     }
+    
+    private void listToolsToFile() {
+        System.out.println("To be completed by Carolyn.");
+    }
 
     //Gail Lee
     //The listProvisions method
@@ -130,6 +179,10 @@ public class ListMenuView extends MenuView{
             int number = provision.getNumber();
             System.out.format("%s\t\t%d\n", name, number);
         }
+    }
+    
+    private void listProvisionsToFile() {
+        System.out.println("To be completed by Gail.");
     }
 
     private void listTeam() {
