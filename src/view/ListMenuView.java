@@ -6,6 +6,8 @@
 package view;
 
 import cityofaaron.CityOfAaron;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import model.Game;
 import model.ListItem;
@@ -83,30 +85,70 @@ public class ListMenuView extends MenuView{
             System.out.format("%s\t\t%d\n", name, number);
         }
     }
-   
+    //Carolyn
+    //The listTools method
+    //Purpose: prepares report for the tools in the storehouse
+    //Parameters: none
+    //Returns: string containing the prepared report
+    //================================================
+   private String prepareToolsReport () {
+    // get the game object
+    Game game = CityOfAaron.getGame ();
+    
+    //use the game objec to get the list of tools in the storehouse
+    ArrayList<ListItem> tools = game.getTools();
+    
+    String report = "";
+    //build report header
+    report += String.format("************************\n");
+    report += String.format("* Tools in the Storehouse *\n");
+    report += String.format("************************\n");
+    
+    //loop through the list of tools and build the body of
+    // the report line by line
+    for (ListItem tool: tools)   {
+        //Get tool's name and number
+        String name = tool.getName();
+        int number = tool.getNumber();
+        
+        //build report line
+        report += String.format("%-20s %d\n", name, number);
+      }
+    return report;
+    }
+    
     //Carolyn
     //The listTools method
     //Purpose: lists the tools in the storehouse
     //Parameters: none
     //Returns: none
     //================================================
+    
     private void listTools() {
-        //get the game object
-        Game game = CityOfAaron.getGame();
+          System.out.print (prepareToolsReport ());
+    }
+    
+    //Carolyn
+    //The listToolsToFile method
+    //Purpose: List the tools in the storehouse into a file
+    //Parameters: none
+    //Returns: none
+    //====================================================
+    private void listToolsToFile()    {
+        //Define file name
+        String fileName = "tools.txt";
         
-        //use the game object to get the list of tools in the storehouse
-        ArrayList<ListItem> tools = game.getTools();
-        
-        //show report title
-        System.out.println("\nTools in the City of Aaron");
-               
-        //Loop through the list and show the items
-        for (ListItem tool: tools) {
-            String name = tool.getName();
-            int number = tool.getNumber();
-            System.out.format("%s\t\t%d\n", name, number);
+        try (PrintWriter out = new PrintWriter(fileName))    {
+            //Prepare the report and print it to a file
+            out.print (prepareToolsReport ());
+            System.out.println("\nList of tools save to file " + fileName);
+        } catch (IOException e) {
+            System.out.println("File Error. " + e.getMessage ());
         }
     }
+            
+        }
+    
 
     //Gail Lee
     //The listProvisions method
