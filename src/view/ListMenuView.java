@@ -13,6 +13,7 @@ import model.Game;
 import model.ListItem;
 import model.TeamMember;
 
+
 /**
  *
  * @author Gail Lee
@@ -158,33 +159,67 @@ public class ListMenuView extends MenuView{
     }
 
     //Gail Lee
-    //The listProvisions method
-    //Purpose: lists the provisions in the storehouse
+    //The prepareProvisionsReport method
+    //Purpose: prepare report for provisions in the storehouse
     //Parameters: none
-    //Returns: none
+    //Returns: String containing the prepared report
     //================================================
-    private void listProvisions() {
+    private String prepareProvisionsReport() {
         //get the game object
         Game game = CityOfAaron.getGame();
-        
+
+      
         //use the game object to get the list of provisions in the storehouse
         ArrayList<ListItem> provisions = game.getProvisions();
-        
-        //show report title
-        System.out.println("\nProvisions in the City of Aaron");
-               
-        //Loop through the list and show the items
-        for (ListItem provision: provisions) {
-            String name = provision.getName();
-            int number = provision.getNumber();
-            System.out.format("%s\t\t%d\n", name, number);
-        }
-    }
-    
-    private void listProvisionsToFile() {
-        System.out.println("To be completed by Gail.");
-    }
 
+		String report = "";
+		
+		//build report header
+		report += String.format("*******************************'\n");
+		report += String.format("* Provisions in the Storehouse '\n");
+		report += String.format("*******************************'\n");
+		
+		//loop trough the list of provisions and build the
+		//body of the report line by line
+		for (ListItem provision: provisions) {
+                    //Get Provisions name and number
+                    String name = provision.getName();
+                    int number = provision.getNumber();
+                    
+                    //build report line
+                    report += String.format("%-20s %d\n", name, number);
+		}
+		return report;
+	}
+    
+    //Gail Lee
+    //The ListProvisions method
+    //Purpose: list the provision in the storehouse
+    //Parameters: none
+    //Returns: none
+    //=================================================
+    private void listProvisions(){
+        System.out.print (prepareProvisionsReport());
+    }
+    //Gail Lee
+    //The ListProvisionsToFile method
+    //Purpose: list the provisions in the storehouse into a file
+    //Parameters: none
+    //Returns: none
+    //*************************************************
+    private void listProvisionsToFile() {
+	//Define file name
+	String fileName = "provisions.txt";
+	try (PrintWriter out = new PrintWriter(fileName)) {
+		//Prepare the report and print it to a file
+		out.print (prepareProvisionsReport());
+		System.out.println("\nList of provisions saved to file " + fileName);
+	} catch (IOException e) {
+		System.out.println("File Error. " + e.getMessage());
+	}
+}
+    
+    
     private void listTeam() {
         //get the game object
         Game game = CityOfAaron.getGame();

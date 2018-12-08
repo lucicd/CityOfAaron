@@ -1,0 +1,7 @@
+*******************************'
+* Provisions in the Storehouse '
+*******************************'
+Sugar                350
+Salt                 50
+Flour                550
+Rice                 100

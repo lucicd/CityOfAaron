@@ -66,3 +66,4 @@ public abstract class MenuView implements ViewInterface {
         } while (menuOption != max);
     }
 }
+
