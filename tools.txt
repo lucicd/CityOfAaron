@@ -1,0 +1,7 @@
+************************
+* Tools in the Storehouse *
+************************
+Axe                  10
+Shovel               50
+Sickel               150
+Plow                 50
