@@ -12,6 +12,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import static java.lang.reflect.Array.set;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -161,7 +162,7 @@ public class GameControl {
         theMap.setLocation(1, 1, loc);
         
         //The village location with a hint
-        String village = "\nYou are the village on the outskirts of the City of Aaron." + 
+        String village = "\nYou are in the village on the outskirts of the City of Aaron." + 
                          "\nIt is the home of hard-working farmers.";
         loc = new Location();
         loc.setDescription(village + "\nOne farmer can take care of 10 acres of land.");
@@ -315,6 +316,14 @@ public class GameControl {
             throw new CropException("Cannot save the game.");
         }
     }
+      
+       public static void setStartingPosition()  {
+           Game theGame = CityOfAaron.getGame();
+           Player thePlayer = theGame.getPlayer();
+           thePlayer.setColumn(0);
+           thePlayer.setRow(0);
+           
+       }
 }
 
 

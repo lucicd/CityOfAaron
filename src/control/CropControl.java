@@ -6,9 +6,13 @@
  */
 package control;
 
+import cityofaaron.CityOfAaron;
 import exceptions.CropException;
 import model.CropData;
 import java.util.Random;
+import model.Game;
+import model.Map;
+import model.Player;
 
 /**
  *
@@ -268,5 +272,28 @@ public class CropControl {
           
         return wheatInStore;
     }
+    
+    public static void setLocationCoordinates (int x, int y) throws CropException  {
+        if (x<0){
+            throw new CropException("A negative x coordinate was input");
+        }
+        if (y<0){
+            throw new CropException("A negative y coordinate was input");
+        } 
+        Game game = CityOfAaron.getGame();
+        Map map = game.getMap();
+        if (x>=map.getColCount()){
+            throw new CropException("An x coordinate is too large");
+        }
+        if (y>=map.getRowCount()){
+            throw new CropException("An y coordinate is too large");
+        }
+        Player player = game.getPlayer();
+        // Set player's row and column
+        player.setColumn(x);
+        player.setRow(y);
+    }  
+        
 }
+
         

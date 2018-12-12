@@ -6,9 +6,13 @@
 package view;
 
 import cityofaaron.CityOfAaron;
+import control.CropControl;
+import exceptions.CropException;
+import java.util.InputMismatchException;
 import model.Game;
 import model.Location;
 import model.Map;
+import model.Player;
 
 /**
  *
@@ -112,7 +116,44 @@ public class GameMenuView extends MenuView {
     }
 
     private void moveToNewLocation() {
-        System.out.println("\nMove to a new location option selected.");
+        System.out.println("\nEnter the coordinates of the location you want to move to.");
+        //Get references to the game and player objects
+        Game game = CityOfAaron.getGame();
+        
+        int x;
+        int y;
+        boolean paramsNotOkay;
+        do {
+            paramsNotOkay = false;
+
+            try {
+                // Prompt the user to enter the x coordinates
+                System.out.print("Enter the x-coordinate:");
+                // Get the user’s input and save it.
+                x = keyboard.nextInt();
+                // Prompt the user to enter the y coordinates
+                System.out.print("Enter the y-coordinate:");
+                // Get the user’s input and save it.
+                y = keyboard.nextInt();
+                
+                CropControl.setLocationCoordinates(x, y);
+                
+                //Show location descriptions.
+                Map map = game.getMap();
+                Location location = map.getLocation(y, x);
+                System.out.println(location.getDescription());
+                
+            } catch (CropException e) {
+                System.out.println("I am sorry master, I cannot do this.");
+                System.out.println(e.getMessage());
+                paramsNotOkay = true;
+            } catch (InputMismatchException e) {
+                System.out.println("Please enter an integer");
+                keyboard.next();
+                paramsNotOkay = true;
+            }
+        } while (paramsNotOkay);
+        
     }
 
     private void manageCrops() {
