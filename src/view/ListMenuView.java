@@ -206,7 +206,7 @@ public class ListMenuView extends MenuView{
         ArrayList<ListItem> provisions = game.getProvisions();
 
 		String report = "";
-		
+                        
 		//build report header
 		report += String.format("*******************************'\n");
 		report += String.format("* Provisions in the Storehouse '\n");

@@ -10,6 +10,8 @@ import control.*;
 import java.util.Scanner;
 import cityofaaron.CityOfAaron;
 import exceptions.CropException;
+import exceptions.EndOfGameException;
+import exceptions.PeopleStarvedException;
 import java.util.InputMismatchException;
 
 /**
@@ -212,12 +214,35 @@ public class CropView {
         System.out.format("\nYear\t\t\t%d\n", cropData.getYear());
     }
     
+    public static void advanceOneYearView() {
+        try {
+            CropControl.advanceOneYear();
+        }
+        catch (EndOfGameException e) {
+            System.out.println("\n\nGame over you have reached 10 years. ");
+            System.out.println("Great Job! Here are your achievement.");
+            System.out.println("Start a new game to play again.");
+            displayCropsReportView();
+            System.exit(0);
+        }
+        catch (PeopleStarvedException e) {
+            System.out.println("\n\nGame over you have starved too many people.");
+            System.out.println("Shame on you. Try again to do better next time!");
+            System.out.println("Start a new game to play again.");
+            displayCropsReportView();
+            System.exit(0);
+        }
+    }
+            
     // The runCropView method()
     // Purpose: runs the methods to manage the crops game
     // Parameters: none
     // Returns: none
     public static void runCropView()
     {
+        // Call the displayCropsReportView() method
+        displayCropsReportView();
+        
         // call the buyLandView() method
         buyLandView();
         
@@ -230,9 +255,12 @@ public class CropView {
         // Call the plantCrops() method
         plantCropsView();
         
+        // Advance one year
+        advanceOneYearView (); 
+        
         // Call the displayCropsReportView() method
         displayCropsReportView();
-
+        
         // add calls to the other crop view methods
         // as they are written
     }

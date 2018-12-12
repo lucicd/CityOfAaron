@@ -8,6 +8,8 @@ package control;
 
 import cityofaaron.CityOfAaron;
 import exceptions.CropException;
+import exceptions.EndOfGameException;
+import exceptions.PeopleStarvedException;
 import model.CropData;
 import java.util.Random;
 import model.Game;
@@ -292,8 +294,24 @@ public class CropControl {
         // Set player's row and column
         player.setColumn(x);
         player.setRow(y);
-    }  
-        
+    } 
+    
+    public static void advanceOneYear() throws EndOfGameException, PeopleStarvedException {
+        Game game = CityOfAaron.getGame();
+        CropData cropData = game.getCropData();
+        int currentYear = cropData.getYear();
+        currentYear++;
+        cropData.setYear(currentYear);
+        if (currentYear>10){
+            throw new EndOfGameException("Game over!");
+        }
+        int population = cropData.getPopulation();
+        int starved = cropData.getNumberWhoDied();
+        if (starved>population/2){
+            throw new PeopleStarvedException("You are fired!");
+        }
+    }   
 }
+    
 
         
