@@ -17,6 +17,35 @@ public class CropData implements Serializable {
     public CropData() {}
     
     private int year;
+    private int population;
+    private int acresOwned;
+    private int eatenByRats;
+    private int wheatInStore;
+    private int cropYield;
+    private int newPeople;
+    private int numberWhoDied;
+    private int harvest;
+    private int peopleFed;
+    private int acresPlanted;
+    private int wheatForPeople;
+    private int offering;
+    private int offeringPercentage;
+
+    /**
+     * Get the offering percentage
+     * @return offeringPercentage
+     */
+    public int getOfferingPercentage() {
+        return offeringPercentage;
+    }
+
+    /**
+     * Set the offering percentage
+     * @param offeringPercentage
+     */
+    public void setOfferingPercentage(int offeringPercentage) {
+        this.offeringPercentage = offeringPercentage;
+    }
 
     /**
      * Get the value of year
@@ -36,7 +65,6 @@ public class CropData implements Serializable {
         this.year = year;
     }
 
-        private int population;
 
     /**
      * Get the value of population
@@ -56,8 +84,6 @@ public class CropData implements Serializable {
         this.population = population;
     }
 
-        private int acresOwned;
-
     /**
      * Get the value of acresOwned
      *
@@ -66,8 +92,6 @@ public class CropData implements Serializable {
     public int getAcresOwned() {
         return acresOwned;
     }
-
-    private int eatenByRats;
 
     /**
      * Get the value of eatenByRats
@@ -96,8 +120,6 @@ public class CropData implements Serializable {
         this.acresOwned = acresOwned;
     }
 
-        private int cropYield;
-
     /**
      * Get the value of cropYield
      *
@@ -115,8 +137,6 @@ public class CropData implements Serializable {
     public void setCropYield(int cropYield) {
         this.cropYield = cropYield;
     }
-
-        private int wheatInStore;
 
     /**
      * Get the value of wheatInStore
@@ -136,8 +156,6 @@ public class CropData implements Serializable {
         this.wheatInStore = wheatInStore;
     }
 
-        private int numberWhoDied;
-
     /**
      * Get the value of numberWhoDied
      *
@@ -155,8 +173,6 @@ public class CropData implements Serializable {
     public void setNumberWhoDied(int numberWhoDied) {
         this.numberWhoDied = numberWhoDied;
     }
-
-        private int newPeople;
 
     /**
      * Get the value of newPeople
@@ -176,8 +192,6 @@ public class CropData implements Serializable {
         this.newPeople = newPeople;
     }
 
-        private int harvest;
-
     /**
      * Get the value of harvest
      *
@@ -195,8 +209,6 @@ public class CropData implements Serializable {
     public void setHarvest(int harvest) {
         this.harvest = harvest;
     }
-
-        private int peopleFed;
 
     /**
      * Get the value of peopleFed
@@ -216,8 +228,6 @@ public class CropData implements Serializable {
         this.peopleFed = peopleFed;
     }
 
-        private int acresPlanted;
-
     /**
      * Get the value of acresPlanted
      *
@@ -236,8 +246,6 @@ public class CropData implements Serializable {
         this.acresPlanted = acresPlanted;
     }
 
-        private int wheatForPeople;
-
     /**
      * Get the value of wheatForPeople
      *
@@ -255,8 +263,6 @@ public class CropData implements Serializable {
     public void setWheatForPeople(int wheatForPeople) {
         this.wheatForPeople = wheatForPeople;
     }
-    
-        private int offering;
 
     /**
      * Get the value of offering

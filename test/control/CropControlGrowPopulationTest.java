@@ -25,8 +25,7 @@ public class CropControlGrowPopulationTest {
         int growthPercentage = 2;
         int expResult = 20;
         cropData.setPopulation(population);
-        int result = CropControl.growPopulation(growthPercentage, cropData);
-        assertEquals(expResult, result);
+        CropControl.growPopulation(growthPercentage, cropData);
         assertEquals(expResult + population, cropData.getPopulation());
         assertEquals(expResult, cropData.getNewPeople());
     }
@@ -39,8 +38,7 @@ public class CropControlGrowPopulationTest {
         int growthPercentage = 0;
         int expResult = 0;
         cropData.setPopulation(population);
-        int result = CropControl.growPopulation(growthPercentage, cropData);
-        assertEquals(expResult, result);
+        CropControl.growPopulation(growthPercentage, cropData);
         assertEquals(expResult + population, cropData.getPopulation());
         assertEquals(expResult, cropData.getNewPeople());
     }
@@ -53,8 +51,7 @@ public class CropControlGrowPopulationTest {
         int growthPercentage = 5;
         int expResult = 50;
         cropData.setPopulation(population);
-        int result = CropControl.growPopulation(growthPercentage, cropData);
-        assertEquals(expResult, result);
+        CropControl.growPopulation(growthPercentage, cropData);
         assertEquals(expResult + population, cropData.getPopulation());
         assertEquals(expResult, cropData.getNewPeople());
     }
@@ -67,8 +64,7 @@ public class CropControlGrowPopulationTest {
         int growthPercentage = 3;
         int expResult = 23;
         cropData.setPopulation(population);
-        int result = CropControl.growPopulation(growthPercentage, cropData);
-        assertEquals(expResult, result);
+        CropControl.growPopulation(growthPercentage, cropData);
         assertEquals(expResult + population, cropData.getPopulation());
         assertEquals(expResult, cropData.getNewPeople());
     }
@@ -81,8 +77,7 @@ public class CropControlGrowPopulationTest {
         int growthPercentage = 3;
         int expResult = 24;
         cropData.setPopulation(population);
-        int result = CropControl.growPopulation(growthPercentage, cropData);
-        assertEquals(expResult, result);
+        CropControl.growPopulation(growthPercentage, cropData);
         assertEquals(expResult + population, cropData.getPopulation());
         assertEquals(expResult, cropData.getNewPeople());
     }
@@ -97,8 +92,7 @@ public class CropControlGrowPopulationTest {
         assertTrue(growthPercentage <= 5);
         int expResult = population * growthPercentage / 100;
         cropData.setPopulation(population);
-        int result = CropControl.growPopulation(growthPercentage, cropData);
-        assertEquals(expResult, result);
+        CropControl.growPopulation(growthPercentage, cropData);
         assertEquals(expResult + population, cropData.getPopulation());
         assertEquals(expResult, cropData.getNewPeople());
     }

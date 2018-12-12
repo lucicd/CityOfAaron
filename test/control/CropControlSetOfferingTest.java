@@ -6,6 +6,7 @@
  */
 package control;
 
+import exceptions.CropException;
 import model.CropData;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -19,15 +20,13 @@ public class CropControlSetOfferingTest {
     public void testSetOfferingCase1() {
         System.out.println("setOffering - Test Case 1");
         CropData cropData = new CropData();
-        int oldOffering = 20;
-        int newOffering = 10;
-        int expResult = newOffering;
-        
-        cropData.setOffering(oldOffering);
-        
-        int result = CropControl.setOffering(newOffering, cropData);
-        assertEquals(expResult, result);
-        assertEquals(newOffering, cropData.getOffering());
+
+        try {
+            CropControl.setOffering(5, cropData);
+            assertEquals(5, cropData.getOfferingPercentage());
+        } catch (Exception e) {
+            fail("No exception expected but got " + e.getMessage());
+        }
     }
     
     @Test
@@ -36,13 +35,17 @@ public class CropControlSetOfferingTest {
         CropData cropData = new CropData();
         int oldOffering = 20;
         int newOffering = -5;
-        int expResult = -1;
         
         cropData.setOffering(oldOffering);
         
-        int result = CropControl.setOffering(newOffering, cropData);
-        assertEquals(expResult, result);
-        assertEquals(oldOffering, cropData.getOffering());
+        try {
+            CropControl.setOffering(newOffering, cropData);
+            fail("Exception expected");
+        } catch (CropException e) {
+            assertEquals(oldOffering, cropData.getOffering());
+        } catch (Exception e) {
+            fail("No exception expected but got " + e.getMessage());
+        }
     }
     
     @Test
@@ -51,13 +54,16 @@ public class CropControlSetOfferingTest {
         CropData cropData = new CropData();
         int oldOffering = 20;
         int newOffering = 120;
-        int expResult = -1;
         
         cropData.setOffering(oldOffering);
-        
-        int result = CropControl.setOffering(newOffering, cropData);
-        assertEquals(expResult, result);
-        assertEquals(oldOffering, cropData.getOffering());
+        try {
+            CropControl.setOffering(newOffering, cropData);
+            fail("Exception expected.");
+        } catch (CropException e) {
+            assertEquals(oldOffering, cropData.getOffering());
+        } catch (Exception e) {
+            fail("No exception expected but got " + e.getMessage());
+        }
     }
     
     @Test
@@ -66,13 +72,15 @@ public class CropControlSetOfferingTest {
         CropData cropData = new CropData();
         int oldOffering = 20;
         int newOffering = 0;
-        int expResult = 0;
         
         cropData.setOffering(oldOffering);
         
-        int result = CropControl.setOffering(newOffering, cropData);
-        assertEquals(expResult, result);
-        assertEquals(newOffering, cropData.getOffering());
+        try {
+            CropControl.setOffering(newOffering, cropData);
+            assertEquals(newOffering, cropData.getOfferingPercentage());
+        } catch (Exception e) {
+            fail("No exception expected but got " + e.getMessage());
+        }
     }
     
     @Test
@@ -81,12 +89,14 @@ public class CropControlSetOfferingTest {
         CropData cropData = new CropData();
         int oldOffering = 20;
         int newOffering = 100;
-        int expResult = 100;
         
         cropData.setOffering(oldOffering);
         
-        int result = CropControl.setOffering(newOffering, cropData);
-        assertEquals(expResult, result);
-        assertEquals(newOffering, cropData.getOffering());
+        try {
+            CropControl.setOffering(newOffering, cropData);
+            assertEquals(newOffering, cropData.getOfferingPercentage());
+        } catch (Exception e) {
+            fail("No exception expected but got " + e.getMessage());
+        }
     }
 }

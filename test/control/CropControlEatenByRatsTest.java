@@ -23,31 +23,23 @@ public class CropControlEatenByRatsTest {
         System.out.println("calcEaten - Test Case 1");
         CropData cropData = new CropData();
         
-        int wheatInStore = 500;
-        int eatenByRats = 500;
-        int expResult = 2500;
-        
-        cropData.setWheatInStore(wheatInStore);
-        cropData.setEatenByRats(0);
+        cropData.setWheatInStore(500);
      
-        int result = CropControl.calcEatenByRats(eatenByRats, cropData);
-        assertEquals(expResult, result);
+        CropControl.calcEatenByRats(0, cropData);
+        assertEquals(0, cropData.getEatenByRats());
+        assertEquals(500, cropData.getWheatInStore());
     }
     @Test
     public void testCalcEatenByRatsCase2() {
         System.out.println("calcEaten - Test Case 2");
         CropData cropData = new CropData();
         
-        int wheatInStore = 500;
-        int eatenByRats = 500;
-        int expResult = 2500;
-        
-        cropData.setWheatInStore(wheatInStore);
-        cropData.setEatenByRats(0);
+        cropData.setWheatInStore(500);
      
-        int result = CropControl.calcEatenByRats(eatenByRats, cropData);
-        assertEquals(expResult, result);
+        CropControl.calcEatenByRats(10, cropData);
+        assertEquals(50, cropData.getEatenByRats());
+        assertEquals(450, cropData.getWheatInStore());
     }
-        }
+}
     
    

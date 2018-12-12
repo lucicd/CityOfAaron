@@ -31,10 +31,10 @@ public class GameMenuView extends MenuView {
               "* CITY OF AARON: GAME MENU  *\n" +
               "*****************************\n" +
               " 1 - View the map\n" +
-              " 2 - View/Print a list\n" +
+              " 2 - View/print a list\n" +
               " 3 - Move to a new location\n" +
-              " 4 - Manage the Crops\n" +
-              " 5 - Return to the Main menu\n",
+              " 4 - Manage the crops\n" +
+              " 5 - Return to the main menu\n",
             5);
     }
     

@@ -33,14 +33,14 @@ public class GameControlCreateNewGameTest {
         CropData cropData = game.getCropData();
         assertEquals(0, cropData.getYear());
         assertEquals(100, cropData.getPopulation());
-        assertEquals(5, cropData.getNewPeople());
+        assertEquals(0, cropData.getNewPeople());
         assertEquals(3, cropData.getCropYield());
         assertEquals(0, cropData.getNumberWhoDied());
         assertEquals(2700, cropData.getWheatInStore());
         assertEquals(1000, cropData.getAcresOwned());
-        assertEquals(3000, cropData.getHarvest());
-        assertEquals(300, cropData.getOffering());
-        assertEquals(1000, cropData.getAcresPlanted());
+        assertEquals(0, cropData.getHarvest());
+        assertEquals(0, cropData.getOffering());
+        assertEquals(0, cropData.getAcresPlanted());
         assertEquals(0, cropData.getEatenByRats());
         assertEquals(0, cropData.getWheatForPeople());
         assertEquals(0, cropData.getPeopleFed());

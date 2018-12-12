@@ -12,7 +12,6 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import static java.lang.reflect.Array.set;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -72,16 +71,17 @@ public class GameControl {
         
         theCrops.setYear(0);
         theCrops.setPopulation(100);
-        theCrops.setNewPeople(5);
+        theCrops.setNewPeople(0);
         theCrops.setCropYield(3);
         theCrops.setNumberWhoDied(0);
-        theCrops.setOffering(10);
+        theCrops.setOffering(0);
         theCrops.setWheatInStore(2700);
         theCrops.setAcresOwned(1000);
-        theCrops.setAcresPlanted(1000);
-        theCrops.setHarvest(3000);
-        theCrops.setOffering(300);
-        theCrops.setAcresPlanted(1000); 
+        theCrops.setAcresPlanted(0);
+        theCrops.setHarvest(0);
+        theCrops.setEatenByRats(0);
+        theCrops.setPeopleFed(0);
+        theCrops.setWheatForPeople(0);
         
         CityOfAaron.getGame().setCropData(theCrops);         
     }
@@ -325,6 +325,3 @@ public class GameControl {
            
        }
 }
-
-
-

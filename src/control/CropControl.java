@@ -22,13 +22,15 @@ import model.Player;
  */
 public class CropControl {
     // constants
-
-    private static final int LAND_BASE = 17;
-    private static final int LAND_RANGE = 11;
-    private static final int ACRES_PER_BUSHEL = 2;
-    private static final int ACRES_PER_PERSON = 10;
-    private static final int BUSHELS_PER_PERSON = 20;
-    private static final int MAX_POPULATION_GROWTH_PERCENTAGE = 5;
+    public static final int LAND_BASE = 17;
+    public static final int LAND_RANGE = 11;
+    public static final int CROP_YIELD_BASE = 2;
+    public static final int CROP_YIELD_RANGE = 4;
+    public static final int MAX_EATEN_BY_RATS_PERCENTAGE = 10;
+    public static final int ACRES_PER_BUSHEL = 2;
+    public static final int ACRES_PER_PERSON = 10;
+    public static final int BUSHELS_PER_PERSON = 20;
+    public static final int MAX_POPULATION_GROWTH_PERCENTAGE = 5;
 
     // random number generator
     private static Random random = new Random();
@@ -45,14 +47,32 @@ public class CropControl {
     }
     
     /**
-     * calcLandCost() method Purpose: Calculate a random number between 17 and
-     * 27 bushels/acre
+     * calcCropYield() method 
+     * Purpose: Calculate a random crop yield between 2 and 5 bushels per acre
      *
-     * @return the land cost
+     * @return the cropYield
+     */
+    public static int calcCropYield() {
+        int cropYield = random.nextInt(CROP_YIELD_RANGE) + CROP_YIELD_BASE;
+        return cropYield;
+    }
+   
+    /**
+     * Calculates random population growth percentage
+     * @return growthPercentage
      */
     public static int calcPopulationGrowthPercentage() {
         int growthPercentage = random.nextInt(MAX_POPULATION_GROWTH_PERCENTAGE + 1);
         return growthPercentage;
+    }
+    
+    /**
+     * Calculates random percentage of crops eaten by rats
+     * @return percentage
+     */
+    public static int calcEatenByRatsPercentage() {
+        int percentage = random.nextInt(MAX_EATEN_BY_RATS_PERCENTAGE + 1);
+        return percentage;
     }
 
     /**
@@ -69,13 +89,13 @@ public class CropControl {
     {
         // if acresToSell < 0 throw exception
         if (acresToSell < 0) {
-            throw new CropException("A negative value was input");
+            throw new CropException("A negative value was input.");
         }
 
         //if acresToSell > acresOwned, throw exception
         int acresOwned = cropData.getAcresOwned();
         if (acresToSell > acresOwned) {
-            throw new CropException("There is insufficient land to sell");
+            throw new CropException("There is insufficient land to sell.");
         }
 
         //acresOwned = acresOwned - acresToSell
@@ -102,7 +122,7 @@ public class CropControl {
     {
         // if acresToBuy < 0, throw exception
         if (acresToBuy < 0) {
-            throw new CropException("A negative value was input");
+            throw new CropException("A negative value was input.");
         }
 
         // requiredWheat = acresToBuy * landPrice
@@ -111,7 +131,7 @@ public class CropControl {
         // if requiredWheat > wheatInStore, throw exception
         int wheatInStore = cropData.getWheatInStore();
         if (requiredWheat > wheatInStore) {
-            throw new CropException("There is insufficient wheat to buy this much land");
+            throw new CropException("There is insufficient wheat to buy this much land.");
         }
 
         // acresOwned = acresOwned + acresToBuy
@@ -129,25 +149,44 @@ public class CropControl {
      *
      * @param offeringPercentage, an integer between 0 and 100 inclusive
      * @param cropData, a reference to a CropData object
-     * @return valid offering percentage Preconditions: percentage must be a
-     * value between 0 and 100 inclusive.
+     * @throws exceptions.CropException
      */
-    public static int setOffering(int offeringPercentage, CropData cropData) {
-        //If the offering percentage is negative this is an error. Return a -1.
+    public static void setOffering(int offeringPercentage, CropData cropData) 
+        throws CropException 
+    {
+        //If the offering percentage is negative this is an error.
         if (offeringPercentage < 0) {
-            return -1;
+            throw new CropException("A negative value was input.");
         }
 
-        //If the offering percentage is greater than 100, this is an error. Return a -1.
+        //If the offering percentage is greater than 100, this is an error.
         if (offeringPercentage > 100) {
-            return -1;
+            throw new CropException("The percentage can't be greater than 100.");
         }
 
         //Save the offering percentage into CropData object.
-        cropData.setOffering(offeringPercentage);
+        cropData.setOfferingPercentage(offeringPercentage);
+    }
+    
+    /**
+     * The payOffering() method Purpose: 
+     * To calculate offering amount
+     * @param cropData, a reference to a CropData object
+     */
+    public static void payOffering(CropData cropData) 
+    {
+        //Get offering percentage
+        int offeringPercentage = cropData.getOfferingPercentage();
+        
+        //Calculate the offering
+        int offering = cropData.getWheatInStore() * offeringPercentage / 100;
 
-        //Return the offering percentage.
-        return offeringPercentage;
+        //Save the offering into CropData object.
+        cropData.setOffering(offering);
+        
+        //Update wheat in store
+        int wheatInStore = cropData.getWheatInStore();
+        cropData.setWheatInStore(wheatInStore - offering);
     }
 
     /**
@@ -162,26 +201,25 @@ public class CropControl {
 
         // If the number of bushels to feed the people is negative, this is an error. 
         if (wheatToFeed < 0) {
-            throw new CropException("A negative value was input");
+            throw new CropException("A negative value was input.");
         }
+        
         // If the number of bushels to feed the people is greater than the wheat in store, this is an error. 
         if (wheatToFeed > cropData.getWheatInStore()) {
-                throw new CropException("There is insufficient wheat to feed the people");
+                throw new CropException("There is insufficient wheat to feed the people.");
         }
+        
         // Subtract the number of bushels to feed the people from the wheat in store and save the result into CropData object.
         int newWheatInStore = cropData.getWheatInStore() - wheatToFeed;
         cropData.setWheatInStore(newWheatInStore);
         
         // Save the number of bushels to feed the people into CropData object
-        cropData.setWheatForPeople(wheatToFeed);
-        
-       
+        cropData.setWheatForPeople(wheatToFeed); 
     }
 
      
     /**
      * The plantCrop() method Purpose: To plant crop
-     *
      * @param acresToPlant
      * @param cropData
      * @throws exceptions.CropException
@@ -192,8 +230,8 @@ public class CropControl {
 
         //if acresToPlant <0
         if (acresToPlant < 0) {
-            throw new CropException("A negative value was input");
-    }
+            throw new CropException("A negative value was input.");
+        }
     
         //requiredushels=acresToPlant/2
         int requiredBushels = acresToPlant / ACRES_PER_BUSHEL;
@@ -204,13 +242,13 @@ public class CropControl {
         //requiredBushels > wheatInStore
         int wheatInStore = cropData.getWheatInStore();
         if (requiredBushels > wheatInStore) {
-           throw new CropException("There was insuficient wheat in store to plant crops");
+           throw new CropException("There was insuficient wheat in store to plant crops.");
         }
 
         //acresToPlant > acresOwned
         int acresOwned = cropData.getAcresOwned();
         if (acresToPlant > acresOwned) {
-             throw new CropException("There was not enough acres to plant the crop");
+             throw new CropException("There was not enough acres to plant the crop.");
         }
 
         //If RequiredPopultation>population
@@ -220,7 +258,7 @@ public class CropControl {
         }
         int population = cropData.getPopulation();
         if (requiredPopulation > population) {
-             throw new CropException("There was not enough people to plant the crops");
+             throw new CropException("There was not enough people to plant the crops.");
         }
 
         //requiedBushels - wheatInStore;
@@ -231,64 +269,85 @@ public class CropControl {
       
     }
     
-    public static int growPopulation(int growthPercentage, CropData cropData) {
+    /**
+     * Calculates population growth of the City of Aaron based on a given random percentage
+     * @param growthPercentage
+     * @param cropData
+     */
+    public static void growPopulation(int growthPercentage, CropData cropData) {
         int population = cropData.getPopulation();
         int newPeople = population * growthPercentage / 100;
         cropData.setNewPeople(newPeople);
         population += newPeople;
         cropData.setPopulation(population);
-        return newPeople;
     }
     
-    public static int calcStarved(CropData cropData) {
+    /**
+     * Calculates the number of people fed and starved
+     * @param cropData
+     */
+    public static void calcStarved(CropData cropData) {
         int population = cropData.getPopulation();
         int wheatForPeople = cropData.getWheatForPeople();
         int adequatlyFed = wheatForPeople / BUSHELS_PER_PERSON;
-        int starved = 0;
-        if (adequatlyFed < population) {
-            starved = population - adequatlyFed;
+        if (adequatlyFed >= population) {
+            adequatlyFed = population;
+            cropData.setNumberWhoDied(0);
+        } else {
+            int starved = population - adequatlyFed;
             cropData.setNumberWhoDied(starved);
             population -= starved;
             cropData.setPopulation(population);
         }
-        return starved;
+        
+        cropData.setPeopleFed(adequatlyFed);
+        
+        //Check if there is any leftover and return it to the store
+        int leftoverWheat = wheatForPeople - adequatlyFed * BUSHELS_PER_PERSON;
+        if (leftoverWheat > 0) {
+            int wheatInStore = cropData.getWheatInStore();
+            cropData.setWheatInStore(wheatInStore + leftoverWheat);
+        }
     }
     
-    public static int calcEatenByRats (int eatenByRats, CropData cropData){
+    /**
+     * calcEatenByRats method calculates the amount of wheat eaten by rats
+     * @param eatenByRats
+     * @param cropData
+     */
+    public static void calcEatenByRats (int eatenByRats, CropData cropData){
         int wheatInStore = cropData.getWheatInStore();
-        int eaten = eatenByRats * wheatInStore/100;
+        int eaten = eatenByRats * wheatInStore / 100;
         wheatInStore -= eaten;
         cropData.setWheatInStore(wheatInStore);
         cropData.setEatenByRats(eaten);
-        return eaten;
    }
 
 
-    public static int storeWheat (int wheat, CropData cropData){
-        if (wheat<0){
-            return -1;
+    public static void storeWheat (int wheat, CropData cropData) 
+        throws CropException {
+        if (wheat < 0){
+            throw new CropException("A negative value was input.");
         }
         int wheatInStore=cropData.getWheatInStore();
         wheatInStore+=wheat;
         cropData.setWheatInStore(wheatInStore);
-          
-        return wheatInStore;
     }
     
     public static void setLocationCoordinates (int x, int y) throws CropException  {
         if (x<0){
-            throw new CropException("A negative x coordinate was input");
+            throw new CropException("A negative x coordinate was input.");
         }
         if (y<0){
-            throw new CropException("A negative y coordinate was input");
+            throw new CropException("A negative y coordinate was input.");
         } 
         Game game = CityOfAaron.getGame();
         Map map = game.getMap();
         if (x>=map.getColCount()){
-            throw new CropException("An x coordinate is too large");
+            throw new CropException("An x coordinate is too large.");
         }
         if (y>=map.getRowCount()){
-            throw new CropException("An y coordinate is too large");
+            throw new CropException("An y coordinate is too large.");
         }
         Player player = game.getPlayer();
         // Set player's row and column
@@ -310,8 +369,27 @@ public class CropControl {
         if (starved>population/2){
             throw new PeopleStarvedException("You are fired!");
         }
-    }   
-}
+    }  
     
-
+    /**
+     * The harvestCrops() method 
+     * Purpose: To harvest crops based on acres planted and crop yield
+     * @param cropData
+     */
+    public static void harvestCrops(CropData cropData) {
+        //calculate crop yield per acre
+        int cropYield = calcCropYield();
         
+        //calculate harvest
+        int acresPlanted = cropData.getAcresPlanted();
+        int harvest = cropYield * acresPlanted;
+        
+        //Update the harvest and crop yield into cropData object
+        cropData.setCropYield(cropYield);
+        cropData.setHarvest(harvest);
+        
+        //Increase wheat in store
+        int wheatInStore = cropData.getWheatInStore();
+        cropData.setWheatInStore(wheatInStore + harvest);
+    }
+}

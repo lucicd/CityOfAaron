@@ -27,8 +27,7 @@ public class CropControlCalcStarvedTest {
         
         cropData.setPopulation(population);
         cropData.setWheatForPeople(wheatForPeople);
-        int result = CropControl.calcStarved(cropData);
-        assertEquals(expResult, result);
+        CropControl.calcStarved(cropData);
         assertEquals(expResult, cropData.getNumberWhoDied());
         assertEquals(population - expResult, cropData.getPopulation());
     }
@@ -44,8 +43,7 @@ public class CropControlCalcStarvedTest {
         
         cropData.setPopulation(population);
         cropData.setWheatForPeople(wheatForPeople);
-        int result = CropControl.calcStarved(cropData);
-        assertEquals(expResult, result);
+        CropControl.calcStarved(cropData);
         assertEquals(expResult, cropData.getNumberWhoDied());
         assertEquals(population - expResult, cropData.getPopulation());
     }
@@ -61,8 +59,7 @@ public class CropControlCalcStarvedTest {
         
         cropData.setPopulation(population);
         cropData.setWheatForPeople(wheatForPeople);
-        int result = CropControl.calcStarved(cropData);
-        assertEquals(expResult, result);
+        CropControl.calcStarved(cropData);
         assertEquals(expResult, cropData.getNumberWhoDied());
         assertEquals(population - expResult, cropData.getPopulation());
     }
@@ -78,8 +75,7 @@ public class CropControlCalcStarvedTest {
         
         cropData.setPopulation(population);
         cropData.setWheatForPeople(wheatForPeople);
-        int result = CropControl.calcStarved(cropData);
-        assertEquals(expResult, result);
+        CropControl.calcStarved(cropData);
         assertEquals(expResult, cropData.getNumberWhoDied());
         assertEquals(population - expResult, cropData.getPopulation());
     }
@@ -95,8 +91,7 @@ public class CropControlCalcStarvedTest {
         
         cropData.setPopulation(population);
         cropData.setWheatForPeople(wheatForPeople);
-        int result = CropControl.calcStarved(cropData);
-        assertEquals(expResult, result);
+        CropControl.calcStarved(cropData);
         assertEquals(expResult, cropData.getNumberWhoDied());
         assertEquals(population - expResult, cropData.getPopulation());
     }
@@ -112,8 +107,7 @@ public class CropControlCalcStarvedTest {
         
         cropData.setPopulation(population);
         cropData.setWheatForPeople(wheatForPeople);
-        int result = CropControl.calcStarved(cropData);
-        assertEquals(expResult, result);
+        CropControl.calcStarved(cropData);
         assertEquals(expResult, cropData.getNumberWhoDied());
         assertEquals(population - expResult, cropData.getPopulation());
     }
